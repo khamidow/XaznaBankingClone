@@ -98,4 +98,20 @@ class AuthRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun logout(): Result<String> {
+        val response = authApi.logout()
+
+        return if (response.isSuccessful && response.body() != null) {
+            val data = response.body()?.data
+            Result.success(data?.message.toString())
+        } else {
+            val errorJson = response.errorBody()?.string()
+            if (errorJson == null) Result.failure(Throwable("Unknown exception"))
+            else {
+                val errorMessage = gson.fromJson(errorJson, OtpGeneralErrorResponse::class.java)
+                Result.failure(Throwable(errorMessage.error.message))
+            }
+        }
+    }
+
 }

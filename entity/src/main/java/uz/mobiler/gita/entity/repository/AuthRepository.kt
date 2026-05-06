@@ -5,4 +5,5 @@ interface AuthRepository {
     suspend fun verifyOtp(phone:String,otp:String): Result<Boolean>
     suspend fun refreshToken(): Result<Boolean>
     suspend fun setPin(pin:String): Result<String>
+    suspend fun logout(): Result<String>
 }

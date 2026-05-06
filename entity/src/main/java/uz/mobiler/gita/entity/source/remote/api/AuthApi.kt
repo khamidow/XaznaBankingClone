@@ -26,4 +26,8 @@ interface AuthApi {
     @POST("/api/v1/auth/set-pin")
     @Headers("Requires-Auth: true")
     suspend fun setPin(@Body setPinRequest: SetPinRequest): Response<OtpGeneralSuccessResponse<JustMessageResponse>>
+
+    @POST("/api/v1/auth/logout")
+    @Headers("Requires-Auth: true")
+    suspend fun logout(): Response<OtpGeneralSuccessResponse<JustMessageResponse>>
 }
