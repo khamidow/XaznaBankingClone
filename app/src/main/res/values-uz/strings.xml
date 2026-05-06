@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">XaznaBankingClone</string>
+    <string name="welcome_to_xazna">\"xazna\"ga xush kelibsiz</string>
+    <string name="select_language_to_continue">Davom etish uchun tilni tanlang</string>
+    <string name="next">Keyingi</string>
+
+    <string name="enter">Kirish</string>
+    <string name="enter_app_to_get_comfort">Qulaylik va soddalikdan bahramand bo\'lish uchun\nilovaga kiring</string>
+    <string name="phone_number">Telefon raqam:</string>
+
+    <string name="verify_account">Akkauntingizni tasdiqlang</string>
+    <string name="verification_code_is_send_to_phone">Tasdiqlash kodi raqamga yuborildi</string>
+    <string name="resend">Qayta yuborish:</string>
+    <string name="confirm">Tasdiqlash</string>
+
+    <string name="settings">Sozlamalar</string>
+    <string name="security">Xavfsizlik</string>
+    <string name="notification">Xabarnoma</string>
+    <string name="widget_settings">Vidjet sozlamalari</string>
+    <string name="app_theme">Ilova ko\'rinishi</string>
+    <string name="language">Til</string>
+    <string name="about_app">Ilova haqida</string>
+    <string name="public_offer">Ommaviy oferta</string>
+    <string name="light">Yorug\'</string>
+    <string name="dark">Qorong\'u</string>
+    <string name="system">Tizimli</string>
+    <string name="custom">Maxsus</string>
+    <string name="voice_notifications">Ovozli bildirishnomalar</string>
+    <string name="fixed_position">Qat\'iy pozitsiya</string>
+    <string name="added_widgets">Qo\'shilgan vidjetlar</string>
+    <string name="available_widgets">Mavjud vidjetlar</string>
+    <string name="all_services">Barcha xiamatlar</string>
+    <string name="my_cards">Mening kartalarim</string>
+    <string name="payment_on_site">Joylarda to\'lov</string>
+    <string name="exchange_rates">Valyutalar kursi</string>
+
+    <string name="advantage">Afzallik</string>
+    <string name="your_financial_partner">Sizning moliyaviy sherigingiz</string>
+    <string name="adv_1_secription">Ilova bilan vaqtni tejang va maksimal qulaylikdan bahramand bo\'ling</string>
+    <string name="save_money_reliable">Mablag\'ingizni ishonchli himoya qilish</string>
+    <string name="adv_2_secription">Bizning tizimimiz pulingizni kiberhujumlar va firibgarlardan ishonchli himoya qiladi</string>
+    <string name="details_benefits_and_costs">Foyda va xarajatlarning batafsil tahlili</string>
+    <string name="adv_3_secription">Pulingizni kuzatib boring va qancha pul sariflayotganingizni va ko\'pincha qayerga ketishini</string>
+    <string name="advantage_info_small">Ro\'yxatdan o\'tish boshqa shaxs uchun amalga oshirilmaydi</string>
+    <string name="advantage_deal">Men shartlarni o\'qib chiqdim va roziman</string>
+    <string name="register">Ro\'yxatdan o\'tish</string>
+
+    <string name="about_app_description">"Xazna" yordamida siz o\‘z mablag\‘laringizni, hisob raqamlaringizni hamda bank kartalaringizni oson va xavfsiz boshqarishingiz, istalgan xizmatlar uchun to\‘lovlar, pul o\‘tkazmalari va boshqa amaliyotlarni bajarishingiz, shuningdek davlat va ijtimoiy xizmatlardan qulaylik bilan foydalanishingiz mumkin. Sizning fikr-mulohazalaringiz asosida ilovani takomillashtirishda davom etamiz. Bizni ijtimoiy tarmoqlarda kuzatib boring: facebook, instagram, telegram</string>
+
+    <string name="change_number">Raqamni o\'zgartirish</string>
+    <string name="change_password">Parol o\'zgartirish</string>
+    <string name="change_pin">PIN o\'zgartirish</string>
+    <string name="reliable_devices">Ishonchli qurilmalar</string>
+    <string name="connect_dektop">Desktop qurilmasini ulash</string>
+    <string name="xazna_security">xazna Security</string>
+    <string name="enter_with_biometry">Biometriya orqali kirish</string>
+    <string name="confirm_payment">To\'lovni tasdiqlash</string>
+    <string name="use_email">Emaildan foydalanish</string>
+
+    <string name="change_number_info">Ilovadan foydalanish uchun profildagi telefon raqam JSHSHIRingiz bilan mos bo\'lishi kerak!</string>
+
+    <string name="screenshot_restrict">Skrinshot olishni taqiqlash</string>
+    <string name="transaction_restrict">Tranzaksiyalarni cheklash</string>
+    <string name="hide_balance">Balansni yashirish</string>
+
+    <string name="new_password">Yangi parol</string>
+    <string name="make_new_parol_and_verify">Yangi login parol yarating va uni tasdiqlang</string>
+    <string name="verify_password">Parolni tasdiqlash</string>
+
+    <string name="password">Parol</string>
+    <string name="forgot_password">Parolni unutdingizmi?</string>
+
+    <string name="chars_8_to_15">8 tadan 15 tagacha belgilar</string>
+    <string name="at_least_1_big_letter">Kamida bitta katta harf</string>
+    <string name="at_least_1_small_letter">Kamida bitta kichik harf</string>
+    <string name="at_least_1_digit">Kamida 1 ta raqam</string>
+
+    <string name="choose_app_type">Ilova turini tanlang</string>
+    <string name="xazna_lite">xazna Lite</string>
+    <string name="xazna_pro">xazna Pro</string>
+    <string name="lite_decrioption">Pensionerlarning ehtiyojlarini hisobga olgan holda yaratilgan, yengil va tushunarli interfeysga ega versiya</string>
+    <string name="pro_decrioption">Barcha xizmat va funksiyalardan to\'liq foydalanish imkoniyati ta\'minlangan versiya</string>
+
+    <string name="wrong_password">Noto\'g\'ri parol</string>
+
+    <string name="make_pin_code">PIN-kod yaratish</string>
+    <string name="repeat_pin">PINni takrorlang</string>
+    <string name="use_face_id_to_enter">Kirish uchun Face ID-dan foydalanish</string>
+    <string name="biometric_verification_off">Biometrik tasdiqlash o\'chirilgan</string>
+    <string name="pin_error_message">Kodlar mos kelmaydi, qayta urinib ko\'ring</string>
+
+</resources>

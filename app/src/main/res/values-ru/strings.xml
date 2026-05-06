@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">XaznaBankingClone</string>
+    <string name="welcome_to_xazna">Добро пожаловать в \"Xazna\"</string>
+    <string name="select_language_to_continue">Выберите язык, чтобы продолжить</string>
+    <string name="next">Далее</string>
+
+    <string name="enter">Войти</string>
+    <string name="enter_app_to_get_comfort">Войдите в приложение, чтобы пользоваться удобством и простотой</string>
+    <string name="phone_number">Номер телефона:</string>
+
+    <string name="verify_account">Подтвердите аккаунт</string>
+    <string name="verification_code_is_send_to_phone">Код подтверждения отправлен на ваш номер</string>
+    <string name="resend">Отправить снова:</string>
+    <string name="confirm">Подтвердить</string>
+
+    <string name="settings">Настройки</string>
+    <string name="security">Безопасность</string>
+    <string name="notification">Уведомления</string>
+    <string name="widget_settings">Настройки виджета</string>
+    <string name="app_theme">Внешний вид приложения</string>
+    <string name="language">Язык</string>
+    <string name="about_app">О приложении</string>
+    <string name="public_offer">Публичная оферта</string>
+    <string name="light">Светлая</string>
+    <string name="dark">Тёмная</string>
+    <string name="system">Системная</string>
+    <string name="custom">Особенный</string>
+    <string name="voice_notifications">Голосовые уведомления</string>
+    <string name="fixed_position">Фиксированная позиция</string>
+    <string name="added_widgets">Добавленные виджеты</string>
+    <string name="available_widgets">Доступные виджеты</string>
+    <string name="all_services">Все услуги</string>
+    <string name="my_cards">Мои карты</string>
+    <string name="payment_on_site">Оплата на месте</string>
+    <string name="exchange_rates">Курсы валют</string>
+
+
+    <string name="advantage">Преимущество</string>
+    <string name="your_financial_partner">Ваш финансовый партнёр</string>
+    <string name="adv_1_secription">Экономьте время с приложением и наслаждайтесь максимальным удобством</string>
+    <string name="save_money_reliable">Надёжная защита ваших средств</string>
+    <string name="adv_2_secription">Наша система надёжно защищает ваши деньги от кибератак и мошенников</string>
+    <string name="details_benefits_and_costs">Подробный анализ доходов и расходов</string>
+    <string name="adv_3_secription">Отслеживайте свои финансы и смотрите, сколько и на что вы тратите</string>
+    <string name="advantage_info_small">Регистрация не может быть выполнена для другого человека</string>
+    <string name="advantage_deal">Я прочитал(а) и согласен(на) с условиями</string>
+    <string name="register">Зарегистрироваться</string>
+
+    <string name="about_app_description">С помощью \"Xazna\" вы можете легко и безопасно управлять своими средствами, счетами и банковскими картами, оплачивать различные услуги, осуществлять денежные переводы и выполнять другие операции. Также вы можете удобно пользоваться государственными и социальными сервисами. Мы продолжаем улучшать приложение на основе ваших отзывов. Подписывайтесь на нас в социальных сетях: facebook, instagram, telegram</string>
+
+    <string name="change_number">Изменить номер</string>
+    <string name="change_password">Изменить пароль</string>
+    <string name="change_pin">Изменить PIN-код</string>
+    <string name="reliable_devices">Надёжные устройства</string>
+    <string name="connect_dektop">Подключить компьютер</string>
+    <string name="xazna_security">Xazna Security</string>
+    <string name="enter_with_biometry">Вход по биометрии</string>
+    <string name="confirm_payment">Подтверждение платежа</string>
+    <string name="use_email">Использовать email</string>
+
+    <string name="change_number_info">Для использования приложения номер телефона в вашем профиле должен совпадать с вашим ЖШШИР.</string>
+
+    <string name="screenshot_restrict">Запретить скриншоты</string>
+    <string name="transaction_restrict">Ограничить транзакции</string>
+    <string name="hide_balance">Скрыть баланс</string>
+
+    <string name="new_password">Новый пароль</string>
+    <string name="make_new_parol_and_verify">Создайте новый пароль для входа и подтвердите его</string>
+    <string name="verify_password">Подтвердите пароль</string>
+
+    <string name="password">Пароль</string>
+    <string name="forgot_password">Забыли пароль?</string>
+
+    <string name="chars_8_to_15">От 8 до 15 символов</string>
+    <string name="at_least_1_big_letter">Минимум одна заглавная буква</string>
+    <string name="at_least_1_small_letter">Минимум одна строчная буква</string>
+    <string name="at_least_1_digit">Минимум одна цифра</string>
+
+    <string name="choose_app_type">Выберите тип приложения</string>
+    <string name="xazna_lite">Xazna Lite</string>
+    <string name="xazna_pro">Xazna Pro</string>
+    <string name="lite_decrioption">Лёгкая и простая версия, созданная с учётом потребностей пенсионеров</string>
+    <string name="pro_decrioption">Полная версия с доступом ко всем услугам и функциям</string>
+
+    <string name="wrong_password">Неверный пароль</string>
+
+    <string name="make_pin_code">Создать PIN-код</string>
+    <string name="repeat_pin">Повторите PIN-код</string>
+    <string name="use_face_id_to_enter">Использовать Face ID для входа</string>
+    <string name="biometric_verification_off">Биометрическая аутентификация отключена</string>
+    <string name="pin_error_message">Коды не совпадают, попробуйте снова</string>
+
+</resources>

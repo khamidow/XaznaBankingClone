@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">XaznaBankingClone</string>
+    <string name="welcome_to_xazna">Welcome to \"Xazna\"</string>
+    <string name="select_language_to_continue">Select a language to continue</string>
+    <string name="next">Next</string>
+
+    <string name="enter">Log in</string>
+    <string name="enter_app_to_get_comfort">Log in to the app to enjoy convenience and simplicity</string>
+    <string name="phone_number">Phone number:</string>
+
+    <string name="verify_account">Verify your account</string>
+    <string name="verification_code_is_send_to_phone">A verification code has been sent to your phone</string>
+    <string name="resend">Resend:</string>
+    <string name="confirm">Confirm</string>
+
+    <string name="settings">Settings</string>
+    <string name="security">Security</string>
+    <string name="notification">Notifications</string>
+    <string name="widget_settings">Widget settings</string>
+    <string name="app_theme">App appearance</string>
+    <string name="language">Language</string>
+    <string name="about_app">About app</string>
+    <string name="public_offer">Public offer</string>
+    <string name="light">Light</string>
+    <string name="dark">Dark</string>
+    <string name="system">System</string>
+    <string name="custom">Custom</string>
+    <string name="voice_notifications">Voice notifications</string>
+    <string name="fixed_position">Fixed position</string>
+    <string name="added_widgets">Added widgets</string>
+    <string name="available_widgets">Available widgets</string>
+    <string name="all_services">All services</string>
+    <string name="my_cards">My cards</string>
+    <string name="payment_on_site">On-site payment</string>
+    <string name="exchange_rates">Exchange rates</string>
+
+
+    <string name="advantage">Advantage</string>
+    <string name="your_financial_partner">Your financial partner</string>
+    <string name="adv_1_secription">Save time with the app and enjoy maximum convenience</string>
+    <string name="save_money_reliable">Secure protection of your funds</string>
+    <string name="adv_2_secription">Our system reliably protects your money from cyberattacks and fraudsters</string>
+    <string name="details_benefits_and_costs">Detailed analysis of income and expenses</string>
+    <string name="adv_3_secription">Track your money and see how much you spend and where it mostly goes</string>
+    <string name="advantage_info_small">Registration cannot be completed for another person</string>
+    <string name="advantage_deal">I have read and agree to the terms</string>
+    <string name="register">Register</string>
+
+    <string name="about_app_description">With \"Xazna\", you can easily and securely manage your funds, accounts, and bank cards, make payments for various services, transfer money, and perform other operations. You can also conveniently use government and social services. We will continue improving the app based on your feedback. Follow us on social media: facebook, instagram, telegram</string>
+
+    <string name="change_number">Change number</string>
+    <string name="change_password">Change password</string>
+    <string name="change_pin">Change PIN</string>
+    <string name="reliable_devices">Trusted devices</string>
+    <string name="connect_dektop">Connect desktop device</string>
+    <string name="xazna_security">Xazna Security</string>
+    <string name="enter_with_biometry">Sign in with biometrics</string>
+    <string name="confirm_payment">Confirm payment</string>
+    <string name="use_email">Use email</string>
+
+    <string name="change_number_info">To use the app, the phone number in your profile must match your JSHSHIR.</string>
+
+    <string name="screenshot_restrict">Disable screenshots</string>
+    <string name="transaction_restrict">Restrict transactions</string>
+    <string name="hide_balance">Hide balance</string>
+
+    <string name="new_password">New password</string>
+    <string name="make_new_parol_and_verify">Create a new login password and confirm it</string>
+    <string name="verify_password">Confirm password</string>
+
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot password?</string>
+
+    <string name="chars_8_to_15">8 to 15 characters</string>
+    <string name="at_least_1_big_letter">At least one uppercase letter</string>
+    <string name="at_least_1_small_letter">At least one lowercase letter</string>
+    <string name="at_least_1_digit">At least one digit</string>
+
+    <string name="choose_app_type">Choose application type</string>
+    <string name="xazna_lite">Xazna Lite</string>
+    <string name="xazna_pro">Xazna Pro</string>
+    <string name="lite_decrioption">A lightweight and simple version designed with pensioners\' needs in mind</string>
+    <string name="pro_decrioption">A full version providing access to all services and features</string>
+
+    <string name="wrong_password">Incorrect password</string>
+
+    <string name="make_pin_code">Create PIN code</string>
+    <string name="repeat_pin">Repeat PIN</string>
+    <string name="use_face_id_to_enter">Use Face ID to sign in</string>
+    <string name="biometric_verification_off">Biometric verification is turned off</string>
+    <string name="pin_error_message">Codes do not match, please try again</string>
+
+</resources>
