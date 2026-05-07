@@ -148,8 +148,7 @@ class SplashScreen : Screen {
             ) {
                 drawDecoLines(
                     rectProgress = rectProgress.value,
-                    arcProgress = arcProgress.value,
-                    dotAlpha = dotAlpha.value
+                    arcProgress = arcProgress.value
                 )
             }
         }
@@ -160,7 +159,6 @@ class SplashScreen : Screen {
 private fun DrawScope.drawDecoLines(
     rectProgress: Float,
     arcProgress: Float,
-    dotAlpha: Float
 ) {
     val w = size.width
     val h = size.height
@@ -222,14 +220,6 @@ private fun DrawScope.drawDecoLines(
                 width = 4.dp.toPx(),
                 cap = StrokeCap.Round
             )
-        )
-    }
-
-    if (dotAlpha > 0f) {
-        drawCircle(
-            color = enabled.copy(alpha = dotAlpha),
-            radius = 4.dp.toPx(),
-            center = Offset(w - 3.dp.toPx(), h * 0.52f)
         )
     }
 }

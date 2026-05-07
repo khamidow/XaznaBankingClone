@@ -13,6 +13,8 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import uz.mobiler.gita.entity.interceptor.AuthInterceptor
+import uz.mobiler.gita.entity.interceptor.ChuckerCloneInterceptor
+import uz.mobiler.gita.entity.interceptor.TokenAuthenticator
 import uz.mobiler.gita.entity.source.local.TokenManager
 import uz.mobiler.gita.entity.source.remote.api.AuthApi
 import javax.inject.Singleton
@@ -33,11 +35,13 @@ class NetworkModule {
         loggingInterceptor: HttpLoggingInterceptor,
         tokenManager: TokenManager
     ): OkHttpClient = OkHttpClient.Builder()
+        .authenticator(TokenAuthenticator(tokenManager))
+        .addInterceptor(ChuckerCloneInterceptor(context))
         .addInterceptor(AuthInterceptor {
             tokenManager.accessToken
         })
         .addInterceptor(loggingInterceptor)
-        .addInterceptor(ChuckerInterceptor(context))
+//        .addInterceptor(ChuckerInterceptor(context))
         .build()
 
     @Provides

@@ -61,24 +61,24 @@ class AuthRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun refreshToken(): Result<Boolean> {
-        val request = RefreshTokenRequest(tokenManager.refreshToken)
-        val response = authApi.refreshToken(request)
-
-        return if (response.isSuccessful && response.body() != null) {
-            val data = response.body()?.data
-            tokenManager.accessToken = data?.accessToken.toString()
-            tokenManager.refreshToken = data?.refreshToken.toString()
-            Result.success(data?.isNewUser.toBoolean())
-        } else {
-            val errorJson = response.errorBody()?.string()
-            if (errorJson == null) Result.failure(Throwable("Unknown exception"))
-            else {
-                val errorMessage = gson.fromJson(errorJson, OtpGeneralErrorResponse::class.java)
-                Result.failure(Throwable(errorMessage.error.message))
-            }
-        }
-    }
+//    override suspend fun refreshToken(): Result<Boolean> {
+//        val request = RefreshTokenRequest(tokenManager.refreshToken)
+//        val response = authApi.refreshToken(request)
+//
+//        return if (response.isSuccessful && response.body() != null) {
+//            val data = response.body()?.data
+//            tokenManager.accessToken = data?.accessToken.toString()
+//            tokenManager.refreshToken = data?.refreshToken.toString()
+//            Result.success(data?.isNewUser.toBoolean())
+//        } else {
+//            val errorJson = response.errorBody()?.string()
+//            if (errorJson == null) Result.failure(Throwable("Unknown exception"))
+//            else {
+//                val errorMessage = gson.fromJson(errorJson, OtpGeneralErrorResponse::class.java)
+//                Result.failure(Throwable(errorMessage.error.message))
+//            }
+//        }
+//    }
 
     override suspend fun setPin(pin: String): Result<String> {
         val request = SetPinRequest(pin)
@@ -107,11 +107,6 @@ class AuthRepositoryImpl @Inject constructor(
             tokenManager.refreshToken = ""
             Result.success(data?.message.toString())
         } else {
-            Log.d("TTT",response.code().toString())
-            if(response.code() == 415){
-                refreshToken()
-                logout()
-            }
             val errorJson = response.errorBody()?.string()
             if (errorJson == null) Result.failure(Throwable("Unknown exception"))
             else {

@@ -1,6 +1,10 @@
 package uz.mobiler.gita.entity.source.remote.api
 
+import okhttp3.OkHttpClient
+import retrofit2.Call
 import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.Headers
 import retrofit2.http.POST
@@ -12,6 +16,16 @@ import uz.mobiler.gita.entity.source.remote.response.JustMessageResponse
 import uz.mobiler.gita.entity.source.remote.response.OtpGeneralSuccessResponse
 import uz.mobiler.gita.entity.source.remote.response.VerifyOtpResponse
 
+object RefreshApiService {
+    val instance: AuthApi by lazy {
+        Retrofit.Builder()
+            .baseUrl("https://banking-api.zokirov-mob-dev.uz/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(OkHttpClient.Builder().build())
+            .build()
+            .create(AuthApi::class.java)
+    }
+}
 interface AuthApi {
     @POST("/api/v1/auth/send-otp")
     suspend fun sendOtp(@Body otpRequest: OtpRequest): Response<OtpGeneralSuccessResponse<JustMessageResponse>>

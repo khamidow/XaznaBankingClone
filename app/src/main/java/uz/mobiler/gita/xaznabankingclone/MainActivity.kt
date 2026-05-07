@@ -12,15 +12,19 @@ import androidx.activity.viewModels
 import androidx.biometric.BiometricPrompt
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
+import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.Navigator
 import dagger.hilt.android.AndroidEntryPoint
+import uz.mobiler.gita.core.SessionEvent
 import uz.mobiler.gita.xaznabankingclone.appSettings.SettingsViewModel
+import uz.mobiler.gita.xaznabankingclone.presentation.screens.login.LoginScreen
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.splash.SplashScreen
 import uz.mobiler.gita.xaznabankingclone.ui.theme.XaznaBankingCloneTheme
 import java.util.Locale
@@ -60,6 +64,12 @@ class MainActivity : FragmentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            val navigator = LocalNavigator.current
+            LaunchedEffect(Unit) {
+                SessionEvent.event.collect {
+                    navigator?.replaceAll(LoginScreen())
+                }
+            }
             val pref = getSharedPreferences("settings", Context.MODE_PRIVATE)
             if (pref.getBoolean("screenshot_restrict", false)) {
                 window.setFlags(

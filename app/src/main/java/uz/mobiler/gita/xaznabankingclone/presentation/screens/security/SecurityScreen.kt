@@ -63,8 +63,8 @@ private fun SecurityContent() {
     var biometrySwitchState by remember {
         mutableStateOf(
             pref.getBoolean(
-                "biometry_enterence",
-                false
+                "face_id",
+                true
             )
         )
     }
