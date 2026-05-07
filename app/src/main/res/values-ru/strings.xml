@@ -91,4 +91,9 @@
     <string name="biometric_verification_off">Биометрическая аутентификация отключена</string>
     <string name="pin_error_message">Коды не совпадают, попробуйте снова</string>
 
+    <string name="try_left_pin">Осталось попыток:</string>
+    <string name="logout">Выйти</string>
+
+    <string name="try_again">Попробовать снова</string>
+
 </resources>

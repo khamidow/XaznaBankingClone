@@ -89,4 +89,9 @@
     <string name="biometric_verification_off">Biometrik tasdiqlash o\'chirilgan</string>
     <string name="pin_error_message">Kodlar mos kelmaydi, qayta urinib ko\'ring</string>
 
+    <string name="try_left_pin">Qolgan urinishlar soni:</string>
+    <string name="logout">Chiqish</string>
+
+    <string name="try_again">Qayta urinish</string>
+
 </resources>

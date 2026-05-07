@@ -48,6 +48,7 @@ import uz.mobiler.gita.presenter.viewModels.phoneScreen.PhoneContract
 import uz.mobiler.gita.presenter.viewModels.phoneScreen.PhoneViewModel
 import uz.mobiler.gita.xaznabankingclone.R
 import uz.mobiler.gita.xaznabankingclone.presentation.items.UzPhoneInput
+import uz.mobiler.gita.xaznabankingclone.presentation.screens.noConnectionScreen.NoConnectionScreen
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.verify.VerifyScreen
 import uz.mobiler.gita.xaznabankingclone.ui.theme.darkGradient
 import uz.mobiler.gita.xaznabankingclone.ui.theme.disabled
@@ -55,6 +56,7 @@ import uz.mobiler.gita.xaznabankingclone.ui.theme.disabledText
 import uz.mobiler.gita.xaznabankingclone.ui.theme.enabled
 import uz.mobiler.gita.xaznabankingclone.ui.theme.lightGradient
 import uz.mobiler.gita.xaznabankingclone.ui.theme.lightWhite
+import uz.mobiler.gita.xaznabankingclone.ui.theme.loadingTransparentBcg
 import uz.mobiler.gita.xaznabankingclone.ui.theme.white
 
 class PhoneNumberScreen : Screen {
@@ -72,6 +74,9 @@ class PhoneNumberScreen : Screen {
 
                 is PhoneContract.SideEffect.NavigateVerify -> {
                     navigator?.push(VerifyScreen())
+                }
+                is PhoneContract.SideEffect.NoConnection -> {
+                    navigator?.push(NoConnectionScreen())
                 }
             }
         }
@@ -92,10 +97,6 @@ private fun PhoneNumberContent(
     var isPhoneFilled by remember { mutableStateOf(false) }
     var phoneState by remember { mutableStateOf("") }
     val pref = context.getSharedPreferences("register", Context.MODE_PRIVATE)
-
-    if (uiState.noNetworkConnection) {
-        Toast.makeText(context, "No connection", Toast.LENGTH_SHORT).show()
-    }
 
     Box(
         modifier = Modifier
@@ -165,7 +166,6 @@ private fun PhoneNumberContent(
                 .clickable(isPhoneFilled, onClick = {
                     onEventDispatcher(PhoneContract.Intent.OnSendOtp(phoneState))
                     pref.edit().putString("phone_number", phoneState).commit()
-
                 })
                 .background(if (isPhoneFilled) enabled else disabled)
                 .padding(11.dp)
@@ -175,7 +175,7 @@ private fun PhoneNumberContent(
         Box(
             Modifier
                 .fillMaxSize()
-                .background(Color(0x406C6C6C))
+                .background(loadingTransparentBcg)
         ) {
             val imageLoader = ImageLoader.Builder(context)
                 .components { add(GifDecoder.Factory()) }

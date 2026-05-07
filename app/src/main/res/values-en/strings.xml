@@ -91,4 +91,9 @@
     <string name="biometric_verification_off">Biometric verification is turned off</string>
     <string name="pin_error_message">Codes do not match, please try again</string>
 
+    <string name="try_left_pin">Attempts remaining:</string>
+    <string name="logout">Log out</string>
+
+    <string name="try_again">Try again</string>
+
 </resources>

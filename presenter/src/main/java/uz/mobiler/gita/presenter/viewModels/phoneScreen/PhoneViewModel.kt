@@ -29,7 +29,6 @@ class PhoneViewModel @Inject constructor(
         when (intent) {
             is PhoneContract.Intent.OnSendOtp -> {
                 if (networkMonitor.checkConnection()) {
-                    reduce { state.copy(noNetworkConnection = false) }
                     sendOtpUseCase(intent.phone).onStart {
                         reduce { state.copy(loading = true) }
                     }.onCompletion { reduce { state.copy(loading = false) } }.onEach {
@@ -41,7 +40,7 @@ class PhoneViewModel @Inject constructor(
                         }
                     }.launchIn(viewModelScope)
                 } else {
-                    reduce { state.copy(noNetworkConnection = true) }
+                   postSideEffect(PhoneContract.SideEffect.NoConnection)
                 }
             }
         }

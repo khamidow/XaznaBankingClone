@@ -29,7 +29,7 @@ class VerifyViewModel @Inject constructor(
 
     private val isLoaded = MutableLiveData(false)
 
-    fun load(phone:String) {
+    fun load(phone: String) {
 //        Log.d("TTT", "loadDataFun")
         if (isLoaded.value != true) {
             onEventDispatcher(VerifyContract.Intent.OnSendOtp(phone))
@@ -43,7 +43,6 @@ class VerifyViewModel @Inject constructor(
         when (intent) {
             is VerifyContract.Intent.OnVerifyOtp -> {
                 if (networkMonitor.checkConnection()) {
-                    reduce { state.copy(noNetworkConnection = false) }
                     verifyOtpUseCase(intent.phone, intent.code).onStart {
                         reduce { state.copy(loading = true) }
                     }.onCompletion { reduce { state.copy(loading = false) } }.onEach { it ->
@@ -57,13 +56,12 @@ class VerifyViewModel @Inject constructor(
                     }.launchIn(viewModelScope)
                 } else {
                     reduce { state.copy(success = false) }
-                    reduce { state.copy(noNetworkConnection = true) }
+                    postSideEffect(VerifyContract.SideEffect.NoConnection)
                 }
             }
 
             is VerifyContract.Intent.OnSendOtp -> {
                 if (networkMonitor.checkConnection()) {
-                    reduce { state.copy(noNetworkConnection = false) }
                     sendOtpUseCase(intent.phone).onStart {
                         reduce { state.copy(loading = true) }
                     }.onCompletion { reduce { state.copy(loading = false) } }.onEach {
@@ -74,7 +72,7 @@ class VerifyViewModel @Inject constructor(
                         }
                     }.launchIn(viewModelScope)
                 } else {
-                    reduce { state.copy(noNetworkConnection = true) }
+                    postSideEffect(VerifyContract.SideEffect.NoConnection)
                 }
             }
         }

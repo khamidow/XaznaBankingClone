@@ -28,6 +28,5 @@ interface AuthApi {
     suspend fun setPin(@Body setPinRequest: SetPinRequest): Response<OtpGeneralSuccessResponse<JustMessageResponse>>
 
     @POST("/api/v1/auth/logout")
-    @Headers("Requires-Auth: true")
-    suspend fun logout(): Response<OtpGeneralSuccessResponse<JustMessageResponse>>
+    suspend fun logout(@Body refreshToken: RefreshTokenRequest): Response<OtpGeneralSuccessResponse<JustMessageResponse>>
 }

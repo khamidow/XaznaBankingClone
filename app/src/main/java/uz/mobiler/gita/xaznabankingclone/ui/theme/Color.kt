@@ -37,3 +37,4 @@ val blueDisabled = Color(0xff2A3A4A)//
 val blueDisabledText = Color(0xffA3AFB5)//
 val blueBackgroundDark = Color(0xff1C1F26)//
 val limeGreen = Color(0xffadd745)
+val loadingTransparentBcg = Color(0x40363636)

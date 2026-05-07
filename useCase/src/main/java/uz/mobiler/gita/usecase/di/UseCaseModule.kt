@@ -4,9 +4,11 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import uz.mobiler.gita.usecase.LogoutUseCase
 import uz.mobiler.gita.usecase.SendOtpUseCase
 import uz.mobiler.gita.usecase.SetPinUseCase
 import uz.mobiler.gita.usecase.VerifyOtpUseCase
+import uz.mobiler.gita.usecase.impl.LogoutUseCaseImpl
 import uz.mobiler.gita.usecase.impl.SendOtpUseCaseImpl
 import uz.mobiler.gita.usecase.impl.SetPinUseCaseImpl
 import uz.mobiler.gita.usecase.impl.VerifyOtpUseCaseImpl
@@ -23,4 +25,7 @@ interface UseCaseModule {
 
     @Binds
     fun bindSetPinUseCase(impl: SetPinUseCaseImpl): SetPinUseCase
+
+    @Binds
+    fun bindsLogoutUseCase(impl: LogoutUseCaseImpl): LogoutUseCase
 }

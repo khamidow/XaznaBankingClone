@@ -1,4 +1,4 @@
-package uz.mobiler.gita.xaznabankingclone.presentation.screens.pinCode
+package uz.mobiler.gita.xaznabankingclone.presentation.screens.firstPin
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -7,6 +7,8 @@ import android.os.VibrationEffect
 import android.os.Vibrator
 import android.util.Log
 import android.widget.Toast
+import androidx.activity.compose.LocalActivity
+import androidx.biometric.BiometricManager
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.keyframes
 import androidx.compose.foundation.Image
@@ -24,11 +26,11 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -37,19 +39,15 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -60,22 +58,19 @@ import coil.ImageLoader
 import coil.compose.AsyncImage
 import coil.decode.GifDecoder
 import coil.request.ImageRequest
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
-import uz.mobiler.gita.presenter.viewModels.phoneScreen.PhoneContract
-import uz.mobiler.gita.presenter.viewModels.pinCodeScreen.PinCodeContract
-import uz.mobiler.gita.presenter.viewModels.pinCodeScreen.PinCodeViewModel
+import uz.mobiler.gita.presenter.viewModels.firstPinScreen.FirstPinContract
+import uz.mobiler.gita.presenter.viewModels.firstPinScreen.FirstPinViewModel
+import uz.mobiler.gita.xaznabankingclone.MainActivity
 import uz.mobiler.gita.xaznabankingclone.R
 import uz.mobiler.gita.xaznabankingclone.presentation.items.NumberButton
+import uz.mobiler.gita.xaznabankingclone.presentation.screens.language.LanguageScreen
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.main.MainScreen
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.noConnectionScreen.NoConnectionScreen
-import uz.mobiler.gita.xaznabankingclone.presentation.screens.verify.VerifyScreen
 import uz.mobiler.gita.xaznabankingclone.ui.theme.darkGradient
-import uz.mobiler.gita.xaznabankingclone.ui.theme.darkGreen
 import uz.mobiler.gita.xaznabankingclone.ui.theme.disabled
 import uz.mobiler.gita.xaznabankingclone.ui.theme.enabled
 import uz.mobiler.gita.xaznabankingclone.ui.theme.lightGradient
@@ -84,29 +79,29 @@ import uz.mobiler.gita.xaznabankingclone.ui.theme.redColor
 import uz.mobiler.gita.xaznabankingclone.ui.theme.white
 import kotlin.math.roundToInt
 
-class PinCodeScreen : Screen {
+class FirstPinScreen : Screen {
     @Composable
     override fun Content() {
-            val viewModel: PinCodeContract.ViewModel = hiltViewModel<PinCodeViewModel>()
+        val viewModel: FirstPinContract.ViewModel = hiltViewModel<FirstPinViewModel>()
         val uiState = viewModel.collectAsState()
         val context = LocalContext.current
         val navigator = LocalNavigator.current
         viewModel.collectSideEffect {
             when (it) {
-                is PinCodeContract.SideEffect.ShowMessage -> {
+                is FirstPinContract.SideEffect.ShowMessage -> {
                     Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
                 }
 
-                is PinCodeContract.SideEffect.NavigateMain -> {
-                    navigator?.push(MainScreen())
+                is FirstPinContract.SideEffect.NavigateLanguage -> {
+                    navigator?.replaceAll(LanguageScreen())
                 }
 
-                is PinCodeContract.SideEffect.NoConnection -> {
+                is FirstPinContract.SideEffect.NoConnection -> {
                     navigator?.push(NoConnectionScreen())
                 }
             }
         }
-        PinCodeContent(
+        FirstPinContent(
             uiState.value,
             viewModel::onEventDispatcher
         )
@@ -114,25 +109,44 @@ class PinCodeScreen : Screen {
 }
 
 @Composable
-private fun PinCodeContent(
-    uiState: PinCodeContract.UiState,
-    onEventDispatcher: (PinCodeContract.Intent) -> Unit
+private fun FirstPinContent(
+    uiState: FirstPinContract.UiState,
+    onEventDispatcher: (FirstPinContract.Intent) -> Unit
 ) {
     val navigator = LocalNavigator.current
     val context = LocalContext.current
+    val biometricManager = BiometricManager.from(context)
+    val canUseBiometric =
+        biometricManager.canAuthenticate(
+            BiometricManager.Authenticators.BIOMETRIC_STRONG
+        ) == BiometricManager.BIOMETRIC_SUCCESS
+    val activity = LocalActivity.current as? MainActivity ?: return
     val coroutineScope = rememberCoroutineScope()
     val pref = context.getSharedPreferences("register", Context.MODE_PRIVATE)
-    var firstOrSecond by remember { mutableStateOf(1) }
-    val biometricVerificationOffString = stringResource(R.string.biometric_verification_off)
-    val makePinCodeString =
-        if (firstOrSecond == 1) stringResource(R.string.make_pin_code)
-        else stringResource(R.string.repeat_pin)
+    var tryCount by remember { mutableStateOf(3) }
     var showErrorMessage by remember { mutableStateOf(false) }
     val offsetX = remember { Animatable(0f) }
     var isError by remember { mutableStateOf(false) }
-    var switchState by remember { mutableStateOf(true) }
-    var firstPin by remember { mutableStateOf("") }
+    val actualPin = pref.getString("pin_code", "")
     var pin by remember { mutableStateOf("") }
+
+    var asked by remember { mutableStateOf(false) }
+    LaunchedEffect(Unit) {
+        if (canUseBiometric) {
+            if (!asked && pref.getBoolean("face_id",true)) {
+                asked = true
+                activity.showBiometric()
+            }
+            activity.onBiometricSuccess = {
+                navigator?.replaceAll(MainScreen())
+            }
+        }
+    }
+    DisposableEffect(Unit) {
+        onDispose {
+            activity.onBiometricSuccess = null
+        }
+    }
 
     val numbers = listOf(
         "1", "2", "3",
@@ -160,50 +174,41 @@ private fun PinCodeContent(
             pin += number
 
             if (pin.length == maxLength) {
-                if (firstOrSecond == 1) {
-                    Log.d("TTT", "first")
-                    showErrorMessage = false
-                    firstPin = pin
-                    pin = ""
-                    firstOrSecond = 2
-                } else {
-                    Log.d("TTT", "second")
-                    if (firstPin != pin) {
-                        Log.d("TTT", "wrong")
-                        showErrorMessage = true
-                        coroutineScope.launch {
-                            vibratePhone()
-
-                            isError = true
-                            delay(99)
-                            offsetX.animateTo(
-                                targetValue = 0f,
-                                animationSpec = keyframes {
-                                    durationMillis = 500
-                                    -30f at 50
-                                    30f at 100
-                                    -24f at 150
-                                    24f at 200
-                                    -16f at 250
-                                    16f at 300
-                                    -8f at 350
-                                    8f at 400
-                                    0f at 500
-                                }
-                            )
-                            delay(99)
-                            isError = false
-                        }
-                        firstOrSecond = 1
-                        firstPin = ""
-                        pin = ""
-                    } else {
-                        Log.d("TTT", "correct")
-                        pref.edit().putBoolean("face_id", switchState).apply()
-                        pref.edit().putString("pin_code",pin).apply()
-                        pref.edit().putBoolean("new_user",false).apply()
-                        onEventDispatcher(PinCodeContract.Intent.OnSetPin(pin))
+                if (actualPin != pin) {
+                    tryCount--
+                    if (tryCount == 0) {
+                        onEventDispatcher(FirstPinContract.Intent.OnLogOut)
+                        pref.edit().putString("pin_code", "").apply()
                     }
+                    Log.d("TTT", "wrong")
+                    showErrorMessage = true
+                    coroutineScope.launch {
+                        vibratePhone()
+
+                        isError = true
+                        delay(99)
+                        offsetX.animateTo(
+                            targetValue = 0f,
+                            animationSpec = keyframes {
+                                durationMillis = 500
+                                -30f at 50
+                                30f at 100
+                                -24f at 150
+                                24f at 200
+                                -16f at 250
+                                16f at 300
+                                -8f at 350
+                                8f at 400
+                                0f at 500
+                            }
+                        )
+                        delay(99)
+                        isError = false
+                    }
+                    pin = ""
+                } else {
+                    Log.d("TTT", "correct")
+                    navigator?.replaceAll(MainScreen())
                 }
             }
         }
@@ -223,27 +228,54 @@ private fun PinCodeContent(
             .padding(horizontal = 18.dp, vertical = 28.dp)
     ) {
         Column() {
-            Image(
-                painter = painterResource(R.drawable.ic_back),
-                contentDescription = null,
+            Row(
                 modifier = Modifier
-                    .size(32.dp)
-                    .clip(RoundedCornerShape(51.dp))
-                    .padding(6.dp)
-                    .clickable(true, onClick = {
-                        navigator?.pop()
-                    })
-            )
-            Text(
-                makePinCodeString,
-                color = white,
-                fontSize = 26.sp,
-                fontWeight = FontWeight.W700,
-                textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .padding(top = 48.dp)
+                    .padding(top = 14.dp)
                     .fillMaxWidth()
-            )
+            ) {
+                Spacer(Modifier.weight(1f))
+                Row(
+                    verticalAlignment = Alignment.CenterVertically, modifier = Modifier
+                        .clickable {
+                            onEventDispatcher(FirstPinContract.Intent.OnLogOut)
+                            pref.edit().putString("pin_code", "").apply()
+                        }
+                ) {
+                    Image(
+                        painter = painterResource(R.drawable.ic_logout),
+                        contentDescription = null,
+                        modifier = Modifier.size(22.dp)
+                    )
+                    Text(
+                        stringResource(R.string.logout),
+                        color = enabled,
+                        fontWeight = FontWeight.W600,
+                        fontSize = 16.sp,
+                        modifier = Modifier.padding(start = 6.dp)
+                    )
+                }
+            }
+            Row(
+                modifier = Modifier
+                    .padding(top = 78.dp)
+                    .fillMaxWidth(), verticalAlignment = Alignment.Bottom
+            ) {
+                Spacer(Modifier.weight(1f))
+                Image(
+                    painter = painterResource(R.drawable.ic_xazna_logo_light),
+                    contentDescription = null,
+                    modifier = Modifier.size(42.dp)
+                )
+                Image(
+                    painter = painterResource(R.drawable.ic_xazna_name),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .padding(start = 8.dp)
+                        .height(36.dp),
+                    colorFilter = ColorFilter.tint(white)
+                )
+                Spacer(Modifier.weight(1f))
+            }
             Spacer(Modifier.weight(1f))
             Row(
                 modifier = Modifier
@@ -251,7 +283,7 @@ private fun PinCodeContent(
                     .offset {
                         IntOffset(offsetX.value.roundToInt(), 0)
                     }
-                    .padding(bottom = 18.dp),
+                    .padding(bottom = 12.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(24.dp)
             ) {
@@ -274,52 +306,14 @@ private fun PinCodeContent(
             }
 
             Text(
-                if (showErrorMessage) stringResource(R.string.pin_error_message) else "",
+                if (showErrorMessage) stringResource(R.string.try_left_pin) + " " + tryCount else "",
                 fontSize = 14.sp,
                 color = redColor,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
-                    .padding(bottom = 10.dp)
+                    .padding(bottom = 28.dp)
                     .fillMaxWidth()
             )
-
-
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight()
-                    .padding(bottom = 38.dp)
-                    .background(
-                        color = darkGreen,
-                        shape = RoundedCornerShape(10.dp)
-                    )
-                    .clip(RoundedCornerShape(10.dp))
-                    .padding(horizontal = 14.dp, vertical = 12.dp)
-            ) {
-
-                Column() {
-                    Text(
-                        text = stringResource(R.string.use_face_id_to_enter),
-                        color = white,
-                        fontSize = 16.sp,
-                        textAlign = TextAlign.Center,
-                        fontWeight = FontWeight.W600,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                }
-                Spacer(Modifier.weight(1f))
-                Switch(
-                    switchState,
-                    onCheckedChange = {
-                        switchState = !switchState
-                    },
-                    modifier = Modifier
-                        .align(Alignment.CenterVertically)
-                        .scale(0.7f)
-                        .height(10.dp)
-                )
-            }
 
             Column(
                 modifier = Modifier.padding(bottom = 26.dp),
@@ -356,11 +350,9 @@ private fun PinCodeContent(
                             .weight(1f)
                             .height(90.dp)
                             .clickable {
-                                Toast.makeText(
-                                    context,
-                                    biometricVerificationOffString,
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                                if (canUseBiometric) {
+                                    activity.showBiometric()
+                                }
                             }
                             .padding(26.dp)
                     )
@@ -410,10 +402,9 @@ private fun PinCodeContent(
     }
 }
 
+
 //@Preview
 //@Composable
-//private fun PinCodeContentPreview() {
-//    XaznaBankingCloneTheme(AppThemeOption.DARK) {
-//        PinCodeContent()
-//    }
+//private fun FirstPinContentPreview() {
+//    FirstPinContent()
 //}

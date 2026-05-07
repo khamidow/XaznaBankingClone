@@ -101,5 +101,13 @@ dependencies {
     implementation(libs.androidx.hilt.navigation.compose)
     ksp(libs.hilt.compiler)
 
+// Preferences
     implementation(libs.datastore.preferences)
+
+// Biometric
+    implementation("androidx.biometric:biometric:1.2.0-alpha05")
+
+// AppCompatActivity
+    implementation("androidx.appcompat:appcompat:1.7.1")
+    implementation("androidx.appcompat:appcompat-resources:1.7.1")
 }

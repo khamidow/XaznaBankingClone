@@ -57,6 +57,7 @@ import uz.mobiler.gita.xaznabankingclone.R
 import uz.mobiler.gita.xaznabankingclone.appSettings.AppThemeOption
 import uz.mobiler.gita.xaznabankingclone.presentation.items.OtpInput
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.infoAdvantage.InfoAdvantageScreen
+import uz.mobiler.gita.xaznabankingclone.presentation.screens.noConnectionScreen.NoConnectionScreen
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.register.RegisterScreen
 import uz.mobiler.gita.xaznabankingclone.ui.theme.XaznaBankingCloneTheme
 import uz.mobiler.gita.xaznabankingclone.ui.theme.darkGradient
@@ -65,6 +66,7 @@ import uz.mobiler.gita.xaznabankingclone.ui.theme.disabledText
 import uz.mobiler.gita.xaznabankingclone.ui.theme.enabled
 import uz.mobiler.gita.xaznabankingclone.ui.theme.lightGradient
 import uz.mobiler.gita.xaznabankingclone.ui.theme.lightWhite
+import uz.mobiler.gita.xaznabankingclone.ui.theme.loadingTransparentBcg
 import uz.mobiler.gita.xaznabankingclone.ui.theme.white
 import kotlin.compareTo
 import kotlin.dec
@@ -76,6 +78,7 @@ class VerifyScreen(private val shouldSendAgain: Boolean = false) : Screen {
     override fun Content() {
         val viewModel: VerifyViewModel = hiltViewModel<VerifyViewModel>()
         val uiState = viewModel.collectAsState()
+        val navigator = LocalNavigator.current
         val context = LocalContext.current
         val pref = context.getSharedPreferences("register", Context.MODE_PRIVATE)
         val phoneNumber = pref.getString("phone_number", "").toString()
@@ -83,6 +86,9 @@ class VerifyScreen(private val shouldSendAgain: Boolean = false) : Screen {
             when (it) {
                 is VerifyContract.SideEffect.ShowMessage -> {
                     Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
+                }
+                is VerifyContract.SideEffect.NoConnection -> {
+                    navigator?.push(NoConnectionScreen())
                 }
             }
         }
@@ -283,7 +289,7 @@ private fun VerifyScreenContent(
         Box(
             Modifier
                 .fillMaxSize()
-                .background(Color(0x406C6C6C))
+                .background(loadingTransparentBcg)
         ) {
             val imageLoader = ImageLoader.Builder(context)
                 .components { add(GifDecoder.Factory()) }

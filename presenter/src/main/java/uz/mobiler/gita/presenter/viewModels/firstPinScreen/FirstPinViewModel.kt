@@ -1,4 +1,4 @@
-package uz.mobiler.gita.presenter.viewModels.pinCodeScreen
+package uz.mobiler.gita.presenter.viewModels.firstPinScreen
 
 import android.Manifest
 import androidx.annotation.RequiresPermission
@@ -11,37 +11,36 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
 import org.orbitmvi.orbit.viewmodel.container
 import uz.mobiler.gita.presenter.util.NetworkMonitor
-import uz.mobiler.gita.usecase.SendOtpUseCase
-import uz.mobiler.gita.usecase.SetPinUseCase
+import uz.mobiler.gita.usecase.LogoutUseCase
 import javax.inject.Inject
 
 @HiltViewModel
-class PinCodeViewModel @Inject constructor(
-    private val setPinUseCase: SetPinUseCase,
+class FirstPinViewModel @Inject constructor(
+    private val logoutUseCase: LogoutUseCase,
     private val networkMonitor: NetworkMonitor
-) : PinCodeContract.ViewModel, ViewModel() {
+) : FirstPinContract.ViewModel, ViewModel() {
 
     override val container =
-        container<PinCodeContract.UiState, PinCodeContract.SideEffect>(PinCodeContract.UiState())
+        container<FirstPinContract.UiState, FirstPinContract.SideEffect>(FirstPinContract.UiState())
 
-    override fun onEventDispatcher(intent: PinCodeContract.Intent) = intent @RequiresPermission(
+    override fun onEventDispatcher(intent: FirstPinContract.Intent) = intent @RequiresPermission(
         Manifest.permission.ACCESS_NETWORK_STATE
     ) {
         when (intent) {
-            is PinCodeContract.Intent.OnSetPin -> {
+            is FirstPinContract.Intent.OnLogOut -> {
                 if (networkMonitor.checkConnection()) {
-                    setPinUseCase(intent.pin).onStart {
+                    logoutUseCase().onStart {
                         reduce { state.copy(loading = true) }
                     }.onCompletion { reduce { state.copy(loading = false) } }.onEach {
                         it.onSuccess {
-                            postSideEffect(PinCodeContract.SideEffect.NavigateMain)
+                            postSideEffect(FirstPinContract.SideEffect.NavigateLanguage)
                             reduce { state.copy(message = it) }
                         }.onFailure {
-                            postSideEffect(PinCodeContract.SideEffect.ShowMessage(it.message.toString()))
+                            postSideEffect(FirstPinContract.SideEffect.ShowMessage(it.message.toString()))
                         }
                     }.launchIn(viewModelScope)
                 } else {
-                    postSideEffect(PinCodeContract.SideEffect.NoConnection)
+                    postSideEffect(FirstPinContract.SideEffect.NoConnection)
                 }
             }
         }

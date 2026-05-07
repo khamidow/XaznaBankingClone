@@ -133,7 +133,7 @@ private fun LoginContent() {
                     .padding(horizontal = 14.dp, vertical = 14.dp)
             ) {
                 Text(
-                    "+998909001029",
+                    pref.getString("phone_number","")?:"",
                     color = Color.White,
                     fontSize = 18.sp
                 )

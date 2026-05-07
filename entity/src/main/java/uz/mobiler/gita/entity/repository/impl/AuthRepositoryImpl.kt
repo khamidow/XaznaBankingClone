@@ -99,12 +99,20 @@ class AuthRepositoryImpl @Inject constructor(
     }
 
     override suspend fun logout(): Result<String> {
-        val response = authApi.logout()
+        val request = RefreshTokenRequest(tokenManager.refreshToken)
+        val response = authApi.logout(request)
 
         return if (response.isSuccessful && response.body() != null) {
             val data = response.body()?.data
+            tokenManager.accessToken = ""
+            tokenManager.refreshToken = ""
             Result.success(data?.message.toString())
         } else {
+            Log.d("TTT",response.code().toString())
+            if(response.code() == 415){
+                refreshToken()
+                logout()
+            }
             val errorJson = response.errorBody()?.string()
             if (errorJson == null) Result.failure(Throwable("Unknown exception"))
             else {

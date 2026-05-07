@@ -10,30 +10,53 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.biometric.BiometricPrompt
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.key
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentActivity
 import cafe.adriel.voyager.navigator.Navigator
 import dagger.hilt.android.AndroidEntryPoint
 import uz.mobiler.gita.xaznabankingclone.appSettings.SettingsViewModel
-import uz.mobiler.gita.xaznabankingclone.presentation.screens.infoAdvantage.InfoAdvantageScreen
-import uz.mobiler.gita.xaznabankingclone.presentation.screens.language.LanguageScreen
-import uz.mobiler.gita.xaznabankingclone.presentation.screens.login.LoginScreen
-import uz.mobiler.gita.xaznabankingclone.presentation.screens.register.RegisterScreen
-import uz.mobiler.gita.xaznabankingclone.presentation.screens.settings.SettingsScreen
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.splash.SplashScreen
-import uz.mobiler.gita.xaznabankingclone.presentation.screens.verify.VerifyScreen
 import uz.mobiler.gita.xaznabankingclone.ui.theme.XaznaBankingCloneTheme
 import java.util.Locale
 
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+class MainActivity : FragmentActivity() {
     private val settingsViewModel: SettingsViewModel by viewModels()
+    var onBiometricSuccess: (() -> Unit)? = null
+    fun showBiometric() {
+        val executor = ContextCompat.getMainExecutor(this)
+
+        val biometricPrompt = BiometricPrompt(
+            this,
+            executor,
+            object : BiometricPrompt.AuthenticationCallback() {
+
+                override fun onAuthenticationSucceeded(
+                    result: BiometricPrompt.AuthenticationResult
+                ) {
+                    super.onAuthenticationSucceeded(result)
+
+                    onBiometricSuccess?.invoke()
+                }
+            }
+        )
+
+        val promptInfo = BiometricPrompt.PromptInfo.Builder()
+            .setTitle("Tasdiqlash")
+            .setSubtitle("Fingerprint yoki Face ID")
+            .setNegativeButtonText("Bekor qilish")
+            .build()
+
+        biometricPrompt.authenticate(promptInfo)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

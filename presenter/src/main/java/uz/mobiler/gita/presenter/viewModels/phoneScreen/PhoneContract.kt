@@ -11,13 +11,13 @@ interface PhoneContract {
 
     data class UiState(
         val loading: Boolean = false,
-        val noNetworkConnection: Boolean = false,
         val message: String = ""
     )
 
     sealed interface SideEffect {
         data class ShowMessage(val message: String) : SideEffect
         data object NavigateVerify : SideEffect
+        data object NoConnection : SideEffect
     }
 
     sealed interface Intent {

@@ -12,13 +12,13 @@ interface VerifyContract {
     data class UiState(
         val success: Boolean = false,
         val loading: Boolean = false,
-        val noNetworkConnection: Boolean = false,
         val isNewUser: Boolean = false,
         val message: String = ""
     )
 
     sealed interface SideEffect {
         data class ShowMessage(val message: String) : SideEffect
+        data object NoConnection: SideEffect
     }
 
     sealed interface Intent {
