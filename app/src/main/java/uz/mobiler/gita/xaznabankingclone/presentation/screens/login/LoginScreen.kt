@@ -41,9 +41,7 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import uz.mobiler.gita.xaznabankingclone.R
 import uz.mobiler.gita.xaznabankingclone.appSettings.AppThemeOption
 import uz.mobiler.gita.xaznabankingclone.presentation.items.SimpleInput
-import uz.mobiler.gita.xaznabankingclone.presentation.items.UzPhoneInput
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.appType.AppTypeScreen
-import uz.mobiler.gita.xaznabankingclone.presentation.screens.register.RegisterScreen
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.verify.VerifyScreen
 import uz.mobiler.gita.xaznabankingclone.ui.theme.XaznaBankingCloneTheme
 import uz.mobiler.gita.xaznabankingclone.ui.theme.darkGradient

@@ -2,7 +2,6 @@ package uz.mobiler.gita.xaznabankingclone.presentation.screens.verify
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.os.Build.VERSION.SDK_INT
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -29,13 +28,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
@@ -49,17 +46,13 @@ import coil.request.ImageRequest
 import kotlinx.coroutines.delay
 import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
-import uz.mobiler.gita.presenter.viewModels.phoneScreen.PhoneContract
-import uz.mobiler.gita.presenter.viewModels.phoneScreen.PhoneViewModel
 import uz.mobiler.gita.presenter.viewModels.verifyScreen.VerifyContract
 import uz.mobiler.gita.presenter.viewModels.verifyScreen.VerifyViewModel
 import uz.mobiler.gita.xaznabankingclone.R
-import uz.mobiler.gita.xaznabankingclone.appSettings.AppThemeOption
 import uz.mobiler.gita.xaznabankingclone.presentation.items.OtpInput
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.infoAdvantage.InfoAdvantageScreen
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.noConnectionScreen.NoConnectionScreen
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.register.RegisterScreen
-import uz.mobiler.gita.xaznabankingclone.ui.theme.XaznaBankingCloneTheme
 import uz.mobiler.gita.xaznabankingclone.ui.theme.darkGradient
 import uz.mobiler.gita.xaznabankingclone.ui.theme.disabled
 import uz.mobiler.gita.xaznabankingclone.ui.theme.disabledText
@@ -68,10 +61,6 @@ import uz.mobiler.gita.xaznabankingclone.ui.theme.lightGradient
 import uz.mobiler.gita.xaznabankingclone.ui.theme.lightWhite
 import uz.mobiler.gita.xaznabankingclone.ui.theme.loadingTransparentBcg
 import uz.mobiler.gita.xaznabankingclone.ui.theme.white
-import kotlin.compareTo
-import kotlin.dec
-import kotlin.div
-import kotlin.rem
 
 class VerifyScreen(private val shouldSendAgain: Boolean = false) : Screen {
     @Composable

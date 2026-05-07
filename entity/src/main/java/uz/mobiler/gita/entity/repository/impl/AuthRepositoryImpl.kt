@@ -9,7 +9,6 @@ import uz.mobiler.gita.entity.source.remote.request.OtpRequest
 import uz.mobiler.gita.entity.source.remote.request.RefreshTokenRequest
 import uz.mobiler.gita.entity.source.remote.request.SetPinRequest
 import uz.mobiler.gita.entity.source.remote.request.VerifyOtpRequest
-import uz.mobiler.gita.entity.source.remote.response.ErrorMessageResponse
 import uz.mobiler.gita.entity.source.remote.response.OtpGeneralErrorResponse
 import javax.inject.Inject
 import javax.inject.Singleton
