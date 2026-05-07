@@ -95,4 +95,10 @@
 
     <string name="try_again">Qayta urinish</string>
 
+    <string name="home">Asosiy</string>
+    <string name="transfers">O\'tkazmalar</string>
+    <string name="payment">To\'lovlar</string>
+    <string name="monitoring">Monitoring</string>
+    <string name="services">Xizmatlar</string>
+
 </resources>
