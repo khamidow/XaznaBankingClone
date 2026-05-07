@@ -96,4 +96,10 @@
 
     <string name="try_again">Попробовать снова</string>
 
+    <string name="home">Главная</string>
+    <string name="transfers">Переводы</string>
+    <string name="payment">Платежи</string>
+    <string name="monitoring">Мониторинг</string>
+    <string name="services">Услуги</string>
+
 </resources>

@@ -96,4 +96,10 @@
 
     <string name="try_again">Try again</string>
 
+    <string name="home">Home</string>
+    <string name="transfers">Transfers</string>
+    <string name="payment">Payments</string>
+    <string name="monitoring">Monitoring</string>
+    <string name="services">Services</string>
+    
 </resources>
