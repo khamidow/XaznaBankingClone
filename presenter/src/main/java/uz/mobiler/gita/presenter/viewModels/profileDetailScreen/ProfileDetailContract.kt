@@ -2,8 +2,6 @@ package uz.mobiler.gita.presenter.viewModels.profileDetailScreen
 
 import kotlinx.coroutines.Job
 import org.orbitmvi.orbit.ContainerHost
-import uz.mobiler.gita.core.models.CardData
-import uz.mobiler.gita.core.models.ExchangeData
 
 interface ProfileDetailContract {
 

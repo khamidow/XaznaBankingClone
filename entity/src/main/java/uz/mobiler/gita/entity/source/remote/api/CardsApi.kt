@@ -6,7 +6,6 @@ import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.POST
 import retrofit2.http.Path
-import retrofit2.http.Query
 import uz.mobiler.gita.entity.source.remote.request.AttachCardRequest
 import uz.mobiler.gita.entity.source.remote.response.CardDataResponse
 import uz.mobiler.gita.entity.source.remote.response.CardGeneralResponse

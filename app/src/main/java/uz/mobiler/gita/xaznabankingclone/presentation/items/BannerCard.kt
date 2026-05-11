@@ -3,7 +3,6 @@ package uz.mobiler.gita.xaznabankingclone.presentation.items
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -12,10 +11,8 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -30,9 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.home.BannerItem
-import uz.mobiler.gita.xaznabankingclone.ui.theme.darkGreen
 import uz.mobiler.gita.xaznabankingclone.ui.theme.enabled
-import uz.mobiler.gita.xaznabankingclone.ui.theme.lightWhite
 import uz.mobiler.gita.xaznabankingclone.ui.theme.white
 
 @SuppressLint("ConfigurationScreenWidthHeight")

@@ -6,8 +6,6 @@ import uz.mobiler.gita.entity.repository.CardsRepository
 import uz.mobiler.gita.entity.source.local.TokenManager
 import uz.mobiler.gita.entity.source.remote.api.CardsApi
 import uz.mobiler.gita.entity.source.remote.request.AttachCardRequest
-import uz.mobiler.gita.entity.source.remote.request.RefreshTokenRequest
-import uz.mobiler.gita.entity.source.remote.response.CardDataResponse
 import uz.mobiler.gita.entity.source.remote.response.OtpGeneralErrorResponse
 import javax.inject.Inject
 import javax.inject.Singleton

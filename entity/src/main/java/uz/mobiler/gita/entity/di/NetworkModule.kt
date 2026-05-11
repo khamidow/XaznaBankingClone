@@ -2,7 +2,6 @@ package uz.mobiler.gita.entity.di
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides

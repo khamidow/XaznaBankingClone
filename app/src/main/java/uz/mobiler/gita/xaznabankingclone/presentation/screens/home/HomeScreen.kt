@@ -2,10 +2,8 @@ package uz.mobiler.gita.xaznabankingclone.presentation.screens.home
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.widget.Space
 import android.widget.Toast
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.OverscrollEffect
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -25,7 +23,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -66,7 +63,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
@@ -81,17 +77,13 @@ import coil.request.ImageRequest
 import kotlinx.coroutines.delay
 import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
-import uz.mobiler.gita.presenter.viewModels.addCardScreen.AddCardContract
 import uz.mobiler.gita.presenter.viewModels.homeScreen.HomeContract
 import uz.mobiler.gita.presenter.viewModels.homeScreen.HomeViewModel
 import uz.mobiler.gita.xaznabankingclone.R
-import uz.mobiler.gita.xaznabankingclone.appSettings.AppThemeOption
 import uz.mobiler.gita.xaznabankingclone.presentation.items.BannerCard
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.addCard.AddCardScreen
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.noConnectionScreen.NoConnectionScreen
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.profile.ProfileScreen
-import uz.mobiler.gita.xaznabankingclone.presentation.screens.settings.SettingsScreen
-import uz.mobiler.gita.xaznabankingclone.ui.theme.XaznaBankingCloneTheme
 import uz.mobiler.gita.xaznabankingclone.ui.theme.enabled
 import uz.mobiler.gita.xaznabankingclone.ui.theme.lightGray
 import uz.mobiler.gita.xaznabankingclone.ui.theme.lightWhite
@@ -99,7 +91,6 @@ import uz.mobiler.gita.xaznabankingclone.ui.theme.loadingTransparentBcg
 import uz.mobiler.gita.xaznabankingclone.ui.theme.white
 import uz.mobiler.gita.xaznabankingclone.ui.theme.yellow
 import uz.mobiler.gita.xaznabankingclone.utils.formatUzs
-import uz.mobiler.gita.xaznabankingclone.utils.toIconBank
 import uz.mobiler.gita.xaznabankingclone.utils.toIconCard
 
 class HomeScreen : Screen {
@@ -894,16 +885,6 @@ private data class MainItemsData(
     val name: String
 )
 
-private data class CardItemsData(
-    val bank: String,
-    val card: String,
-    val new: String,
-    val money: String,
-    val code: String,
-    val isFav: Boolean = false,
-    val isBlocked: Boolean = false
-)
-
 private data class CashbackItemsData(
     val icon: Int,
     val color: String,
@@ -929,38 +910,6 @@ private val mainItems = mutableListOf<MainItemsData>().apply {
     add(MainItemsData(R.drawable.ic_humopay, "HumoPay"))
     add(MainItemsData(R.drawable.ic_home, "My Home"))
     add(MainItemsData(R.drawable.ic_bank, "My Bank"))
-}
-
-private val cardItems = mutableListOf<CardItemsData>().apply {
-    add(
-        CardItemsData(
-            "Xalq Banki",
-            "Uzcard",
-            "New main card",
-            "230 459.07 UZS",
-            "5614 6890 4452 9647"
-        )
-    )
-    add(
-        CardItemsData(
-            "Aloqa Bank",
-            "Uzcard",
-            "New main card",
-            "230 459.07 UZS",
-            "8600 0676 0291 1204",
-            isBlocked = true
-        )
-    )
-    add(
-        CardItemsData(
-            "Xalq Banki",
-            "Uzcard",
-            "New main card",
-            "230 459.07 UZS",
-            "5614 6890 4452 9647",
-            isFav = true
-        )
-    )
 }
 
 private val cashbackItems = mutableListOf<CashbackItemsData>().apply {

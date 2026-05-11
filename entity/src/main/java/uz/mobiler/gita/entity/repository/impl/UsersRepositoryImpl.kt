@@ -1,21 +1,16 @@
 package uz.mobiler.gita.entity.repository.impl
 
 import android.content.SharedPreferences
+import androidx.core.content.edit
 import com.google.gson.Gson
-import uz.mobiler.gita.core.models.CardData
 import uz.mobiler.gita.core.models.UserData
-import uz.mobiler.gita.entity.repository.CardsRepository
 import uz.mobiler.gita.entity.repository.UsersRepository
 import uz.mobiler.gita.entity.source.local.TokenManager
-import uz.mobiler.gita.entity.source.remote.api.CardsApi
 import uz.mobiler.gita.entity.source.remote.api.UsersApi
-import uz.mobiler.gita.entity.source.remote.request.AttachCardRequest
 import uz.mobiler.gita.entity.source.remote.request.ProfileNameRequest
-import uz.mobiler.gita.entity.source.remote.response.CardDataResponse
 import uz.mobiler.gita.entity.source.remote.response.OtpGeneralErrorResponse
 import javax.inject.Inject
 import javax.inject.Singleton
-import androidx.core.content.edit
 
 @Singleton
 class UsersRepositoryImpl @Inject constructor(

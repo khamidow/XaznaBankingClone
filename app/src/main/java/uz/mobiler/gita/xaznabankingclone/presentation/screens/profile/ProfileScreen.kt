@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
@@ -35,7 +34,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -47,10 +45,8 @@ import uz.mobiler.gita.xaznabankingclone.appSettings.AppThemeOption
 import uz.mobiler.gita.xaznabankingclone.presentation.items.BottomItem
 import uz.mobiler.gita.xaznabankingclone.presentation.items.SettingsItem
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.profileDetail.ProfileDetailScreen
-import uz.mobiler.gita.xaznabankingclone.presentation.screens.security.SecurityScreen
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.settings.SettingsScreen
 import uz.mobiler.gita.xaznabankingclone.ui.theme.XaznaBankingCloneTheme
-import uz.mobiler.gita.xaznabankingclone.ui.theme.redColor
 
 class ProfileScreen : Screen {
     @Composable

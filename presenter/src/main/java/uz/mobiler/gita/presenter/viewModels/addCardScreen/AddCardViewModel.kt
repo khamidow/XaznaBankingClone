@@ -11,9 +11,7 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
 import org.orbitmvi.orbit.viewmodel.container
 import uz.mobiler.gita.presenter.util.NetworkMonitor
-import uz.mobiler.gita.presenter.viewModels.phoneScreen.PhoneContract
 import uz.mobiler.gita.usecase.AttachCardUseCase
-import uz.mobiler.gita.usecase.SendOtpUseCase
 import javax.inject.Inject
 
 @HiltViewModel

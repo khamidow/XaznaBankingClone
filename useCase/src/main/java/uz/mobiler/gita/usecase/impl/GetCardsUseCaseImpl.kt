@@ -7,7 +7,6 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import uz.mobiler.gita.core.models.CardData
 import uz.mobiler.gita.entity.repository.CardsRepository
-import uz.mobiler.gita.entity.source.remote.response.CardDataResponse
 import uz.mobiler.gita.usecase.GetCardsUseCase
 import javax.inject.Inject
 

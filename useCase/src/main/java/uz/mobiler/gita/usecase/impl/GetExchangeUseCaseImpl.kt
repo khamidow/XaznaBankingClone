@@ -7,7 +7,6 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import uz.mobiler.gita.core.models.ExchangeData
 import uz.mobiler.gita.entity.repository.ExchangeRepository
-import uz.mobiler.gita.entity.source.remote.response.ExchangeResponse
 import uz.mobiler.gita.usecase.GetExchangeUseCase
 import javax.inject.Inject
 
