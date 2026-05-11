@@ -35,7 +35,6 @@
     <string name="payment_on_site">On-site payment</string>
     <string name="exchange_rates">Exchange rates</string>
 
-
     <string name="advantage">Advantage</string>
     <string name="your_financial_partner">Your financial partner</string>
     <string name="adv_1_secription">Save time with the app and enjoy maximum convenience</string>
@@ -92,7 +91,7 @@
     <string name="pin_error_message">Codes do not match, please try again</string>
 
     <string name="try_left_pin">Attempts remaining:</string>
-    <string name="logout">Log out</string>
+    <string name="logout">Exit</string>
 
     <string name="try_again">Try again</string>
 
@@ -101,5 +100,20 @@
     <string name="payment">Payments</string>
     <string name="monitoring">Monitoring</string>
     <string name="services">Services</string>
-    
+
+    <string name="total_balance">Total balance</string>
+    <string name="expired_card">Card has expired</string>
+    <string name="add_card">Add card</string>
+    <string name="pay_phone_number">Phone number payment</string>
+    <string name="hits">Guides</string>
+    <string name="loans">Loans</string>
+    <string name="loans_description">Convenient and fast loans</string>
+    <string name="deposits">Deposits</string>
+    <string name="deposits_description">Your passive income</string>
+
+    <string name="card_number">Card number</string>
+    <string name="expire_date">Expiry date</string>
+    <string name="card_name">Card name</string>
+    <string name="all_exchange_rates">All exchange rates</string>
+
 </resources>

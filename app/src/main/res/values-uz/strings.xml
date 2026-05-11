@@ -101,4 +101,19 @@
     <string name="monitoring">Monitoring</string>
     <string name="services">Xizmatlar</string>
 
+    <string name="total_balance">Umumiy balans</string>
+    <string name="expired_card">Kartaning amal qilish muddati tugagan</string>
+    <string name="add_card">Karta qo\'shish</string>
+    <string name="pay_phone_number">Telefon raqami uchun to\'lov</string>
+    <string name="hits">Qo\'llanmalar</string>
+    <string name="loans">Kreditlar</string>
+    <string name="loans_description">Qulay va tezkor qarz</string>
+    <string name="deposits">Omonatlar</string>
+    <string name="deposits_description">Sizning passiv daromadingiz</string>
+
+    <string name="card_number">Karta raqami</string>
+    <string name="expire_date">Muddat sanasi</string>
+    <string name="card_name">Karta nomi</string>
+    <string name="all_exchange_rates">Barcha valyuta kurslari</string>
+
 </resources>

@@ -1,6 +1,7 @@
 package uz.mobiler.gita.entity.di
 
 import android.content.Context
+import android.content.SharedPreferences
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.google.gson.Gson
 import dagger.Module
@@ -17,6 +18,9 @@ import uz.mobiler.gita.entity.interceptor.ChuckerCloneInterceptor
 import uz.mobiler.gita.entity.interceptor.TokenAuthenticator
 import uz.mobiler.gita.entity.source.local.TokenManager
 import uz.mobiler.gita.entity.source.remote.api.AuthApi
+import uz.mobiler.gita.entity.source.remote.api.CardsApi
+import uz.mobiler.gita.entity.source.remote.api.ExchangeApi
+import uz.mobiler.gita.entity.source.remote.api.UsersApi
 import javax.inject.Singleton
 
 @Module
@@ -58,6 +62,26 @@ class NetworkModule {
 
     @Provides
     @Singleton
+    fun provideRegisterSharedPref(@ApplicationContext context: Context): SharedPreferences =
+        context.getSharedPreferences("register", Context.MODE_PRIVATE)
+
+    @Provides
+    @Singleton
     fun provideAuthApi(retrofit: Retrofit): AuthApi =
         retrofit.create(AuthApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideCardsApi(retrofit: Retrofit): CardsApi =
+        retrofit.create(CardsApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideExchangeApi(retrofit: Retrofit): ExchangeApi =
+        retrofit.create(ExchangeApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideUsersApi(retrofit: Retrofit): UsersApi =
+        retrofit.create(UsersApi::class.java)
 }

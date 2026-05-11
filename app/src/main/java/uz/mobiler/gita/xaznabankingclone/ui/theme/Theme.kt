@@ -10,6 +10,7 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import uz.mobiler.gita.xaznabankingclone.appSettings.AppThemeOption
+import uz.mobiler.gita.xaznabankingclone.ui.theme.grayBackground
 
 private val DarkColorScheme = darkColorScheme(
     primary = enabled,
@@ -25,7 +26,11 @@ private val DarkColorScheme = darkColorScheme(
     tertiaryContainer = black,
     primaryFixedDim = grayBackground,
     onBackground = dark,
-    tertiaryFixedDim =grayBackground
+    tertiaryFixedDim = grayBackground,
+    secondaryContainer = darkGradient,
+    onSecondaryContainer = grayBackground,
+    secondaryFixed = darkGreen,
+    surface = dark
 )
 
 private val LightColorScheme = lightColorScheme(
@@ -42,7 +47,11 @@ private val LightColorScheme = lightColorScheme(
     tertiaryContainer = white,
     primaryFixedDim = white,
     onBackground = light,
-    tertiaryFixedDim = lightBackground
+    tertiaryFixedDim = lightBackground,
+    secondaryContainer = enabled,
+    onSecondaryContainer = mainColor,
+    secondaryFixed = darkGreen,
+    surface = white
 )
 private val DarkBlueColorScheme = darkColorScheme(
     primary = bluePrimary,
@@ -58,7 +67,11 @@ private val DarkBlueColorScheme = darkColorScheme(
     tertiaryContainer = black,
     primaryFixedDim = blueBackgroundDark,
     onBackground = dark,
-    tertiaryFixedDim = blueBackgroundDark
+    tertiaryFixedDim = blueBackgroundDark,
+    secondaryContainer = blueGradientDark,
+    onSecondaryContainer = blueLight,
+    secondaryFixed = blueDark,
+    surface = dark
 )
 
 @Composable

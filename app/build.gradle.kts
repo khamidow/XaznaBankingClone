@@ -58,6 +58,7 @@ dependencies {
     implementation(libs.androidx.compose.animation.core)
     implementation(libs.volley)
     implementation(libs.androidx.ui)
+    implementation(libs.androidx.compose.runtime)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -106,9 +107,11 @@ dependencies {
     implementation(libs.datastore.preferences)
 
 // Biometric
-    implementation("androidx.biometric:biometric:1.2.0-alpha05")
+    implementation(libs.androidx.biometric)
 
 // AppCompatActivity
-    implementation("androidx.appcompat:appcompat:1.7.1")
-    implementation("androidx.appcompat:appcompat-resources:1.7.1")
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.appcompat.resources)
+
+    debugImplementation(libs.leakcanary.android)
 }
