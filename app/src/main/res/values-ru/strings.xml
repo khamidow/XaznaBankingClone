@@ -102,4 +102,18 @@
     <string name="monitoring">Мониторинг</string>
     <string name="services">Услуги</string>
 
+    <string name="total_balance">Общий баланс</string>
+    <string name="expired_card">Срок действия карты истёк</string>
+    <string name="add_card">Добавить карту</string>
+    <string name="pay_phone_number">Оплата по номеру телефона</string>
+    <string name="hits">Руководства</string>
+    <string name="loans">Кредиты</string>
+    <string name="loans_description">Удобные и быстрые кредиты</string>
+    <string name="deposits">Вклады</string>
+    <string name="deposits_description">Ваш пассивный доход</string>
+
+    <string name="card_number">Номер карты</string>
+    <string name="expire_date">Срок действия</string>
+    <string name="card_name">Название карты</string>
+    <string name="all_exchange_rates">Все курсы валют</string>
 </resources>

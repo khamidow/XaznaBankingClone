@@ -60,9 +60,10 @@ private fun SecurityContent() {
     val context = LocalContext.current
     val navigator = LocalNavigator.current
     val pref = context.getSharedPreferences("settings", Context.MODE_PRIVATE)
+    val prefRegister = context.getSharedPreferences("register", Context.MODE_PRIVATE)
     var biometrySwitchState by remember {
         mutableStateOf(
-            pref.getBoolean(
+            prefRegister.getBoolean(
                 "face_id",
                 true
             )
@@ -177,7 +178,7 @@ private fun SecurityContent() {
                     biometrySwitchState,
                     onCheckedChange = {
                         biometrySwitchState = !biometrySwitchState
-                        pref.edit().putBoolean("biometry_enterence", biometrySwitchState).commit()
+                        prefRegister.edit().putBoolean("face_id", biometrySwitchState).apply()
                     },
                     modifier = Modifier
                         .align(Alignment.CenterVertically)

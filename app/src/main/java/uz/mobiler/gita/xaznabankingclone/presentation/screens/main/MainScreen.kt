@@ -43,7 +43,7 @@ class MainScreen : Screen {
                             .height(80.dp)
                     ) {
                         Row(
-                            modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp),
+                            modifier = Modifier.fillMaxSize().padding(horizontal = 12.dp),
                             horizontalArrangement = Arrangement.SpaceBetween,
                             verticalAlignment = Alignment.CenterVertically
                         ) {
