@@ -1,15 +1,18 @@
-package uz.mobiler.gita.presenter.viewModels.addCardScreen
+package uz.mobiler.gita.presenter.viewModels.cardsScreen
 
 import kotlinx.coroutines.Job
 import org.orbitmvi.orbit.ContainerHost
+import uz.mobiler.gita.core.models.CardData
 
-interface AddCardContract {
+interface CardsContract {
 
     interface ViewModel : ContainerHost<UiState, SideEffect> {
         fun onEventDispatcher(intent: Intent): Job
     }
 
     data class UiState(
+        val cards: List<CardData> = emptyList(),
+        val mainCard: CardData? = null,
         val loading: Boolean = false,
         val message: String = ""
     )
@@ -20,6 +23,6 @@ interface AddCardContract {
     }
 
     sealed interface Intent {
-        data class OnAddCard(val cardNumber: String, val bcg: String) : Intent
+        data object OnLoadData : Intent
     }
 }

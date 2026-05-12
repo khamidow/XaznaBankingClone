@@ -1,4 +1,4 @@
-package uz.mobiler.gita.presenter.viewModels.addCardScreen
+package uz.mobiler.gita.presenter.viewModels.cardsScreen
 
 import android.Manifest
 import androidx.annotation.RequiresPermission
@@ -11,37 +11,42 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
 import org.orbitmvi.orbit.viewmodel.container
 import uz.mobiler.gita.presenter.util.NetworkMonitor
-import uz.mobiler.gita.usecase.AttachCardUseCase
-import uz.mobiler.gita.usecase.SetMainCardUseCase
+import uz.mobiler.gita.usecase.GetCardsUseCase
+import uz.mobiler.gita.usecase.GetExchangeUseCase
 import javax.inject.Inject
 
 @HiltViewModel
-class AddCardViewModel @Inject constructor(
-    private val addCardUseCase: AttachCardUseCase,
+class CardsViewModel @Inject constructor(
+    private val getCardsUseCase: GetCardsUseCase,
     private val networkMonitor: NetworkMonitor
-) : AddCardContract.ViewModel, ViewModel() {
+) : CardsContract.ViewModel, ViewModel() {
 
     override val container =
-        container<AddCardContract.UiState, AddCardContract.SideEffect>(AddCardContract.UiState())
+        container<CardsContract.UiState, CardsContract.SideEffect>(CardsContract.UiState())
 
-    override fun onEventDispatcher(intent: AddCardContract.Intent) = intent @RequiresPermission(
+    init {
+        onEventDispatcher(CardsContract.Intent.OnLoadData)
+    }
+
+    override fun onEventDispatcher(intent: CardsContract.Intent) = intent @RequiresPermission(
         Manifest.permission.ACCESS_NETWORK_STATE
     ) {
         when (intent) {
-            is AddCardContract.Intent.OnAddCard -> {
+            is CardsContract.Intent.OnLoadData -> {
                 if (networkMonitor.checkConnection()) {
-                    addCardUseCase(intent.cardNumber,intent.bcg).onStart {
+                    getCardsUseCase().onStart {
                         reduce { state.copy(loading = true) }
                     }.onCompletion { reduce { state.copy(loading = false) } }.onEach {
                         it.onSuccess {
-                            postSideEffect(AddCardContract.SideEffect.ShowMessage("Card is added"))
-                            reduce { state.copy(message = it) }
+                            val mainCard = it.find { it.isMain == true }
+                            reduce { state.copy(mainCard = mainCard) }
+                            reduce { state.copy(cards = it) }
                         }.onFailure {
-                            postSideEffect(AddCardContract.SideEffect.ShowMessage(it.message.toString()))
+                            postSideEffect(CardsContract.SideEffect.ShowMessage(it.message.toString()))
                         }
                     }.launchIn(viewModelScope)
                 } else {
-                   postSideEffect(AddCardContract.SideEffect.NoConnection)
+                   postSideEffect(CardsContract.SideEffect.NoConnection)
                 }
             }
         }

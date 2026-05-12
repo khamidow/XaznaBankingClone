@@ -116,4 +116,26 @@
     <string name="expire_date">Срок действия</string>
     <string name="card_name">Название карты</string>
     <string name="all_exchange_rates">Все курсы валют</string>
+
+    <string name="new_user">Новый пользователь</string>
+    <string name="my_info">Моя информация</string>
+    <string name="receipts">Квитанции</string>
+    <string name="general_information">Общая информация</string>
+    <string name="contact_the_bank">Связаться с банком:</string>
+    <string name="invite_friends">Пригласить друзей</string>
+    <string name="detection_of_malicious_applications">Обнаружение вредоносных приложений</string>
+    <string name="account_status">Статус аккаунта:</string>
+    <string name="all_cards">Все карты</string>
+    <string name="add">Добавить</string>
+    <string name="replenish">Пополнить</string>
+    <string name="send">Отправить</string>
+    <string name="qr_share">QR Share</string>
+    <string name="actions">Действия</string>
+
+    <string name="monitoring_card">Мониторинг карты</string>
+    <string name="monitoring_card_description">Подключите сервис для\nпросмотра истории операций по карте</string>
+    <string name="make_main">Сделать основной</string>
+    <string name="delete_card">Удалить карту</string>
+    <string name="select_action">Выберите действие</string>
+
 </resources>

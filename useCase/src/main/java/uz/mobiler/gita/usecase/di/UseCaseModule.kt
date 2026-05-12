@@ -11,6 +11,7 @@ import uz.mobiler.gita.usecase.GetExchangeUseCase
 import uz.mobiler.gita.usecase.GetUserInfoUseCase
 import uz.mobiler.gita.usecase.LogoutUseCase
 import uz.mobiler.gita.usecase.SendOtpUseCase
+import uz.mobiler.gita.usecase.SetMainCardUseCase
 import uz.mobiler.gita.usecase.SetPinUseCase
 import uz.mobiler.gita.usecase.UpdateUserNameUseCase
 import uz.mobiler.gita.usecase.VerifyOtpUseCase
@@ -21,6 +22,7 @@ import uz.mobiler.gita.usecase.impl.GetExchangeUseCaseImpl
 import uz.mobiler.gita.usecase.impl.GetUserInfoUseCaseImpl
 import uz.mobiler.gita.usecase.impl.LogoutUseCaseImpl
 import uz.mobiler.gita.usecase.impl.SendOtpUseCaseImpl
+import uz.mobiler.gita.usecase.impl.SetMainCardUseCaseImpl
 import uz.mobiler.gita.usecase.impl.SetPinUseCaseImpl
 import uz.mobiler.gita.usecase.impl.UpdateUserNameUseCaseImpl
 import uz.mobiler.gita.usecase.impl.VerifyOtpUseCaseImpl
@@ -59,4 +61,6 @@ interface UseCaseModule {
     @Binds
     fun bindsDetachCardUseCase(impl: DetachCardUseCaseImpl): DetachCardUseCase
 
+    @Binds
+    fun bindsSetMainCardUseCase(impl: SetMainCardUseCaseImpl): SetMainCardUseCase
 }
