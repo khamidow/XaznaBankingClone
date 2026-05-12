@@ -14,7 +14,7 @@ interface HomeContract {
     data class UiState(
         val exchangeRates: List<ExchangeData> = emptyList(),
         val cards: List<CardData> = emptyList(),
-        val mainCard: CardData? = null,
+        val allSum: Long? = null,
         val loading: Boolean = false,
         val message: String = ""
     )

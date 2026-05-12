@@ -39,8 +39,11 @@ class HomeViewModel @Inject constructor(
                         reduce { state.copy(loading = true) }
                     }.onCompletion { reduce { state.copy(loading = false) } }.onEach {
                         it.onSuccess {
-                            val mainCard = it.find { it.isMain == true }
-                            reduce { state.copy(mainCard = mainCard) }
+                            var sum = 0L
+                            it.forEach {
+                                sum += it.balance
+                            }
+                            reduce { state.copy(allSum = sum) }
                             reduce { state.copy(cards = it) }
                         }.onFailure {
                             postSideEffect(HomeContract.SideEffect.ShowMessage(it.message.toString()))

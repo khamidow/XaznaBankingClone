@@ -116,4 +116,25 @@
     <string name="card_name">Karta nomi</string>
     <string name="all_exchange_rates">Barcha valyuta kurslari</string>
 
+    <string name="new_user">Yangi foydalanuvchi</string>
+    <string name="my_info">Mening ma\'lumotlarim</string>
+    <string name="receipts">Kvitansiyalar</string>
+    <string name="general_information">Kvitansiyalar</string>
+    <string name="contact_the_bank">Bank bilan bog\'lanish:</string>
+    <string name="invite_friends">Do\'stlarni taklif qilish</string>
+    <string name="detection_of_malicious_applications">Zararli ilovalarni aniqlash</string>
+    <string name="account_status">Akkaunt holati:</string>
+    <string name="all_cards">Barcha kartalar</string>
+    <string name="add">Qo\'shish</string>
+    <string name="replenish">To\'ldirish</string>
+    <string name="send">Yuborish</string>
+    <string name="qr_share">QR Share</string> <!--don't change this-->
+    <string name="actions">Amaliyotlar</string>
+
+    <string name="monitoring_card">Kartani monitoring qilish</string>
+    <string name="monitoring_card_description">Kartalar bo\'yicha operatsiyalar tarixini\nko\'rish uchun xiamtni ulang</string>
+    <string name="make_main">Asosiy qilish</string>
+    <string name="delete_card">Kartani o\'chirish</string>
+    <string name="select_action">Amaliyotni tanlang</string>
+
 </resources>

@@ -2,6 +2,7 @@ package uz.mobiler.gita.entity.source.remote.api
 
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.POST
@@ -21,7 +22,7 @@ interface CardsApi {
     @Headers("Requires-Auth: true")
     suspend fun attachCardByNumber(@Body attachCardRequest: AttachCardRequest): Response<CardGeneralResponse<CardDataResponse>>
 
-    @POST("/api/v1/cards/{id}")
+    @DELETE("/api/v1/cards/{id}")
     @Headers("Requires-Auth: true")
     suspend fun detachCardById(@Path("id") id: String):  Response<OtpGeneralSuccessResponse<JustMessageResponse>>
 

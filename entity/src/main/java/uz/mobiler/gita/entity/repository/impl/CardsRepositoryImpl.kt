@@ -1,5 +1,6 @@
 package uz.mobiler.gita.entity.repository.impl
 
+import android.content.SharedPreferences
 import com.google.gson.Gson
 import uz.mobiler.gita.core.models.CardData
 import uz.mobiler.gita.entity.repository.CardsRepository
@@ -14,7 +15,8 @@ import javax.inject.Singleton
 class CardsRepositoryImpl @Inject constructor(
     private val tokenManager: TokenManager,
     private val cardsApi: CardsApi,
-    private val gson: Gson
+    private val gson: Gson,
+    private val pref: SharedPreferences
 ) : CardsRepository {
     override suspend fun getCards(): Result<List<CardData>> {
         val response = cardsApi.attachedCards()
@@ -32,12 +34,13 @@ class CardsRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun attachCard(number: String): Result<String> {
+    override suspend fun attachCard(number: String,bcg:String): Result<String> {
         val request = AttachCardRequest(number)
         val response = cardsApi.attachCardByNumber(request)
 
         return if (response.isSuccessful && response.body() != null) {
             val data = response.body()?.data
+            pref.edit().putString("card_${data?.id.toString()}",bcg).apply()
             Result.success("Success")
         } else {
             val errorJson = response.errorBody()?.string()
@@ -54,6 +57,7 @@ class CardsRepositoryImpl @Inject constructor(
 
         return if (response.isSuccessful && response.body() != null) {
             val data = response.body()?.data
+            pref.edit().putString("card_$id","").apply()
             Result.success(true)
         } else {
             val errorJson = response.errorBody()?.string()
@@ -67,6 +71,22 @@ class CardsRepositoryImpl @Inject constructor(
 
     override suspend fun blockCard(id: String): Result<Boolean> {
         val response = cardsApi.blockCardById(id)
+
+        return if (response.isSuccessful && response.body() != null) {
+            val data = response.body()?.data
+            Result.success(true)
+        } else {
+            val errorJson = response.errorBody()?.string()
+            if (errorJson == null) Result.failure(Throwable("Unknown exception"))
+            else {
+                val errorMessage = gson.fromJson(errorJson, OtpGeneralErrorResponse::class.java)
+                Result.failure(Throwable(errorMessage.error.message))
+            }
+        }
+    }
+
+    override suspend fun setMainCard(id: String): Result<Boolean> {
+        val response = cardsApi.setMainCardById(id)
 
         return if (response.isSuccessful && response.body() != null) {
             val data = response.body()?.data

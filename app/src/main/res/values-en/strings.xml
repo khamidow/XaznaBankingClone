@@ -116,4 +116,25 @@
     <string name="card_name">Card name</string>
     <string name="all_exchange_rates">All exchange rates</string>
 
+    <string name="new_user">New user</string>
+    <string name="my_info">My information</string>
+    <string name="receipts">Receipts</string>
+    <string name="general_information">General information</string>
+    <string name="contact_the_bank">Contact the bank:</string>
+    <string name="invite_friends">Invite friends</string>
+    <string name="detection_of_malicious_applications">Detection of malicious applications</string>
+    <string name="account_status">Account status:</string>
+    <string name="all_cards">All cards</string>
+    <string name="add">Add</string>
+    <string name="replenish">Top up</string>
+    <string name="send">Send</string>
+    <string name="qr_share">QR Share</string>
+    <string name="actions">Actions</string>
+
+    <string name="monitoring_card">Card monitoring</string>
+    <string name="monitoring_card_description">Connect the service to\nview card transaction history</string>
+    <string name="make_main">Make main</string>
+    <string name="delete_card">Delete card</string>
+    <string name="select_action">Select an action</string>
+
 </resources>

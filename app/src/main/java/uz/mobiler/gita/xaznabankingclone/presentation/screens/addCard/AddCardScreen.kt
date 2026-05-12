@@ -1,5 +1,6 @@
 package uz.mobiler.gita.xaznabankingclone.presentation.screens.addCard
 
+import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -75,6 +76,9 @@ class AddCardScreen : Screen {
             when (it) {
                 is AddCardContract.SideEffect.ShowMessage -> {
                     Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
+                    if (it.message == "Card is added"){
+                        navigator?.pop()
+                    }
                 }
 
                 is AddCardContract.SideEffect.NoConnection -> {
@@ -96,6 +100,7 @@ private fun AddCardContent(
 ) {
     val context = LocalContext.current
     val navigator = LocalNavigator.current
+    val pref = context.getSharedPreferences("cards", Context.MODE_PRIVATE)
     var cardNumber by remember {
         mutableStateOf("")
     }
@@ -119,7 +124,6 @@ private fun AddCardContent(
         cardNumber.length == 16 &&
                 expiryDate.text.length == 5 &&
                 name.isNotBlank()
-
 
     Box(
         modifier = Modifier
@@ -481,7 +485,7 @@ private fun AddCardContent(
             )
         }
         Text(
-            stringResource(R.string.next).uppercase(),
+            stringResource(R.string.add).uppercase(),
             color = if (isAllFilled) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSecondary,
             fontSize = 18.sp,
             fontWeight = FontWeight.W600,
@@ -492,7 +496,7 @@ private fun AddCardContent(
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(10.dp))
                 .clickable(isAllFilled, onClick = {
-                    onEventDispatcher(AddCardContract.Intent.OnAddCard(cardNumber.replace(" ", "")))
+                    onEventDispatcher(AddCardContract.Intent.OnAddCard(cardNumber.replace(" ", ""),cardBackground.toString()))
                 })
                 .background(if (isAllFilled) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.primaryContainer)
                 .padding(11.dp)

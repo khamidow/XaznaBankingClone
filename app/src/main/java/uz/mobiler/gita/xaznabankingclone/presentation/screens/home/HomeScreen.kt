@@ -82,6 +82,7 @@ import uz.mobiler.gita.presenter.viewModels.homeScreen.HomeViewModel
 import uz.mobiler.gita.xaznabankingclone.R
 import uz.mobiler.gita.xaznabankingclone.presentation.items.BannerCard
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.addCard.AddCardScreen
+import uz.mobiler.gita.xaznabankingclone.presentation.screens.cards.CardsScreen
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.noConnectionScreen.NoConnectionScreen
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.profile.ProfileScreen
 import uz.mobiler.gita.xaznabankingclone.ui.theme.enabled
@@ -128,8 +129,9 @@ private fun HomeContent(
     val navigator = LocalNavigator.currentOrThrow.parent
     val screenWidth = LocalConfiguration.current.screenWidthDp.dp
     var phoneNumber by remember { mutableStateOf("") }
-    var showMoneyState by remember { mutableStateOf(false) }
     val pref = context.getSharedPreferences("register", Context.MODE_PRIVATE)
+    val prefSettings = context.getSharedPreferences("settings", Context.MODE_PRIVATE)
+    var showMoneyState by remember { mutableStateOf(prefSettings.getBoolean("show_money",false)) }
     val name = pref.getString("name", "") ?: ""
     var imageUri by remember { mutableStateOf(pref.getString("image_uri", null)) }
     val repeatedItems = remember(banners) { List(1000) { banners[it % banners.size] } }
@@ -279,14 +281,15 @@ private fun HomeContent(
                                         .clip(RoundedCornerShape(50.dp))
                                         .clickable {
                                             showMoneyState = !showMoneyState
+                                            prefSettings.edit().putBoolean("show_money",showMoneyState).apply()
                                         }
                                 )
                             }
 
                             Text(
                                 if (showMoneyState) {
-                                    if (uiState.mainCard == null) "-----"
-                                    else uiState.mainCard?.balance?.formatUzs()!!
+                                    if (uiState.allSum == null) "-----"
+                                    else uiState.allSum?.formatUzs()!!
                                 } else "•••••",
                                 color = white,
                                 fontWeight = FontWeight.W700,
@@ -369,6 +372,9 @@ private fun HomeContent(
                                     ambientColor = MaterialTheme.colorScheme.onPrimary
                                 )
                                 .clip(RoundedCornerShape(12.dp))
+                                .clickable {
+                                    navigator?.push(CardsScreen())
+                                }
                                 .background(
                                     MaterialTheme.colorScheme.surface,
                                     RoundedCornerShape(12.dp)
@@ -416,7 +422,9 @@ private fun HomeContent(
                                     modifier = Modifier.padding(top = 5.dp)
                                 )
                                 Text(
-                                    it.balance.formatUzs(),
+                                    if (showMoneyState) {
+                                        it.balance.formatUzs()
+                                    } else "•••••",
                                     color = MaterialTheme.colorScheme.onPrimary,
                                     fontSize = 16.sp,
                                     fontWeight = FontWeight.W700,
