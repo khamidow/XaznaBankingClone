@@ -19,10 +19,12 @@ interface VerifyContract {
     sealed interface SideEffect {
         data class ShowMessage(val message: String) : SideEffect
         data object NoConnection: SideEffect
+        data object NavigateHome: SideEffect
     }
 
     sealed interface Intent {
         data class OnVerifyOtp(val phone: String, val code: String) : Intent
+        data class OnConfirmOtp(val otp: String) : Intent
         data class OnSendOtp(val phone: String) : Intent
     }
 }

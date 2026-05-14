@@ -97,7 +97,6 @@ private fun SettingsScreenContent() {
             .background(MaterialTheme.colorScheme.background)
             .safeDrawingPadding()
     ) {
-
         Column {
             Box(
                 modifier = Modifier

@@ -16,11 +16,13 @@ interface FirstPinContract {
 
     sealed interface SideEffect {
         data class ShowMessage(val message: String) : SideEffect
-        data object NavigateLanguage : SideEffect
         data object NoConnection : SideEffect
+        data object NavigateLanguage : SideEffect
+        data object NavigateVerifyOtp : SideEffect
     }
 
     sealed interface Intent {
         data object OnLogOut : Intent
+        data class OnConfirmPin(val pin:String) : Intent
     }
 }

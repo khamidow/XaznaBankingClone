@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
 import org.orbitmvi.orbit.viewmodel.container
 import uz.mobiler.gita.presenter.util.NetworkMonitor
+import uz.mobiler.gita.usecase.ConfirmOtpUseCase
 import uz.mobiler.gita.usecase.SendOtpUseCase
 import uz.mobiler.gita.usecase.VerifyOtpUseCase
 import javax.inject.Inject
@@ -20,6 +21,7 @@ import javax.inject.Inject
 class VerifyViewModel @Inject constructor(
     private val verifyOtpUseCase: VerifyOtpUseCase,
     private val sendOtpUseCase: SendOtpUseCase,
+    private val confirmOtpUseCase: ConfirmOtpUseCase,
     private val networkMonitor: NetworkMonitor
 ) : VerifyContract.ViewModel, ViewModel() {
 
@@ -58,7 +60,6 @@ class VerifyViewModel @Inject constructor(
                     postSideEffect(VerifyContract.SideEffect.NoConnection)
                 }
             }
-
             is VerifyContract.Intent.OnSendOtp -> {
                 if (networkMonitor.checkConnection()) {
                     sendOtpUseCase(intent.phone).onStart {
@@ -66,6 +67,21 @@ class VerifyViewModel @Inject constructor(
                     }.onCompletion { reduce { state.copy(loading = false) } }.onEach {
                         it.onSuccess {
                             reduce { state.copy(message = it) }
+                        }.onFailure {
+                            postSideEffect(VerifyContract.SideEffect.ShowMessage(it.message.toString()))
+                        }
+                    }.launchIn(viewModelScope)
+                } else {
+                    postSideEffect(VerifyContract.SideEffect.NoConnection)
+                }
+            }
+            is VerifyContract.Intent.OnConfirmOtp -> {
+                if (networkMonitor.checkConnection()) {
+                    confirmOtpUseCase(intent.otp).onStart {
+                        reduce { state.copy(loading = true) }
+                    }.onCompletion { reduce { state.copy(loading = false) } }.onEach { it ->
+                        it.onSuccess {
+                            postSideEffect(VerifyContract.SideEffect.NavigateHome)
                         }.onFailure {
                             postSideEffect(VerifyContract.SideEffect.ShowMessage(it.message.toString()))
                         }

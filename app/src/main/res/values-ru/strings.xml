@@ -138,4 +138,27 @@
     <string name="delete_card">Удалить карту</string>
     <string name="select_action">Выберите действие</string>
 
+    <string name="transfer_to_card">Перевод на карту</string>
+    <string name="between_my_cards">Между моими картами</string>
+    <string name="transfer_to_wallet">Перевод на кошелёк</string>
+    <string name="transfer_by_requisites">Перевод по реквизитам</string>
+    <string name="conversion">Конверсия</string>
+    <string name="international_transfers">Международные переводы</string>
+    <string name="request_for_funds">Запрос средств</string>
+    <string name="money_transfer_to_kyrgyzstan">Перевод в Кыргызстан</string>
+    <string name="do_not_work">Эта функция по какой-то причине не работает</string>
+
+    <string name="sender">Отправитель</string>
+    <string name="receiver">Получатель</string>
+    <string name="transfer_amount">Сумма перевода</string>
+    <string name="zero_sum">0 сум</string>
+    <string name="transfer_to_kgz_description">Переводы на карты ELCARD в настоящее время доступны только через карты UZCARD.</string>
+    <string name="payment_to_budget">Платёж в бюджет (для 25/27-значных счетов)</string>
+    <string name="recipient_bank_code">Код банка получателя (МФО)</string>
+    <string name="recipient_account">Счёт получателя (20 цифр)</string>
+    <string name="recipient_name">Имя получателя</string>
+    <string name="payment_name">Название платежа</string>
+    <string name="attention">Внимание! Чтобы ваш платёж был принят, пожалуйста, укажите, кому или за что вы платите</string>
+    <string name="search">Поиск</string>
+
 </resources>
