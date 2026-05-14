@@ -136,4 +136,26 @@
     <string name="delete_card">Kartani o\'chirish</string>
     <string name="select_action">Amaliyotni tanlang</string>
 
+    <string name="transfer_to_card">Kartaga o\'tkazma</string>
+    <string name="between_my_cards">Kartalarim orasida</string>
+    <string name="transfer_to_wallet">Hamyonga o\'tkazmalar</string>
+    <string name="transfer_by_requisites">Rekvizitlar bo\'yicha to\'lov</string>
+    <string name="conversion">Konversiya</string>
+    <string name="international_transfers">Xalqaro o\'tkazmalar</string>
+    <string name="request_for_funds">Pul so\'rash</string>
+    <string name="money_transfer_to_kyrgyzstan">Qirg\'izistonga o\'tkazma</string>
+    <string name="do_not_work">Bu xususiyat ma\'lum bir sababga ko\'ra ishlamaydi</string>
+
+    <string name="sender">Yuboruvchi</string>
+    <string name="receiver">Oluvchi</string>
+    <string name="transfer_amount">O\'tkazma miqdori</string>
+    <string name="zero_sum">0 so\'m</string>
+    <string name="transfer_to_kgz_description">ELCARD kartalariga o\'tkazmalar hozirda faqat UZCARD kartalari orqali amalga oshiriladi.</string>
+    <string name="payment_to_budget">Budjetga to\'lov (25/27 xonalar uchun)</string>
+    <string name="recipient_bank_code">Oluvchi bank ko\'di (MFO)</string>
+    <string name="recipient_account">Oluvchi hisobi (20ta raqam)</string>
+    <string name="recipient_name">Oluvchining ismi</string>
+    <string name="payment_name">To\'lov nomi</string>
+    <string name="attention">Diqqat! To\'lovingiz qabul qilinishiga ishonch hosil qilish uchun, iltimos, kim yoki nima uchun to\'layotganingizni ko\'rsating</string>
+    <string name="search">Qidirish</string>
 </resources>

@@ -41,6 +41,7 @@ class CardsRepositoryImpl @Inject constructor(
         return if (response.isSuccessful && response.body() != null) {
             val data = response.body()?.data
             pref.edit().putString("card_${data?.id.toString()}",bcg).apply()
+            pref.edit().putString(data?.id.toString(),number).apply()
             Result.success("Success")
         } else {
             val errorJson = response.errorBody()?.string()

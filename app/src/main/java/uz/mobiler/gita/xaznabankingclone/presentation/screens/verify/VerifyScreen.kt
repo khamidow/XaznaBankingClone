@@ -50,6 +50,7 @@ import uz.mobiler.gita.presenter.viewModels.verifyScreen.VerifyContract
 import uz.mobiler.gita.presenter.viewModels.verifyScreen.VerifyViewModel
 import uz.mobiler.gita.xaznabankingclone.R
 import uz.mobiler.gita.xaznabankingclone.presentation.items.OtpInput
+import uz.mobiler.gita.xaznabankingclone.presentation.screens.home.HomeScreen
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.infoAdvantage.InfoAdvantageScreen
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.noConnectionScreen.NoConnectionScreen
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.register.RegisterScreen
@@ -62,7 +63,10 @@ import uz.mobiler.gita.xaznabankingclone.ui.theme.lightWhite
 import uz.mobiler.gita.xaznabankingclone.ui.theme.loadingTransparentBcg
 import uz.mobiler.gita.xaznabankingclone.ui.theme.white
 
-class VerifyScreen(private val shouldSendAgain: Boolean = false) : Screen {
+class VerifyScreen(
+    private val shouldSendAgain: Boolean = false,
+    private val homeToScreen: Boolean = false
+) : Screen {
     @Composable
     override fun Content() {
         val viewModel: VerifyViewModel = hiltViewModel<VerifyViewModel>()
@@ -76,17 +80,23 @@ class VerifyScreen(private val shouldSendAgain: Boolean = false) : Screen {
                 is VerifyContract.SideEffect.ShowMessage -> {
                     Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
                 }
+
                 is VerifyContract.SideEffect.NoConnection -> {
                     navigator?.push(NoConnectionScreen())
                 }
+
+                is VerifyContract.SideEffect.NavigateHome -> {
+                    navigator?.replaceAll(HomeScreen())
+                }
             }
         }
-        if (shouldSendAgain) {
+        if (!homeToScreen && shouldSendAgain) {
             LaunchedEffect(Unit) {
                 viewModel.load(phoneNumber)
             }
         }
         VerifyScreenContent(
+            homeToScreen,
             shouldSendAgain,
             uiState.value,
             viewModel::onEventDispatcher
@@ -97,6 +107,7 @@ class VerifyScreen(private val shouldSendAgain: Boolean = false) : Screen {
 @SuppressLint("DefaultLocale")
 @Composable
 private fun VerifyScreenContent(
+    homeToScreen: Boolean = false,
     shouldSendAgain: Boolean = false,
     uiState: VerifyContract.UiState,
     onEventDispatcher: (VerifyContract.Intent) -> Unit
@@ -206,33 +217,35 @@ private fun VerifyScreenContent(
                 modifier = Modifier.fillMaxWidth(),
             ) {
                 Spacer(Modifier.weight(1f))
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier
-                        .clip(RoundedCornerShape(10.dp))
-                        .background(
-                            disabled,
-                            RoundedCornerShape(10.dp)
+                if (!homeToScreen) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(10.dp))
+                            .background(
+                                disabled,
+                                RoundedCornerShape(10.dp)
+                            )
+                            .clickable(timeLeft == 0, onClick = {
+                                timeLeft = 119
+                                resetTrigger++
+                                onEventDispatcher(VerifyContract.Intent.OnSendOtp(phoneNumber))
+                            })
+                            .padding(horizontal = 6.dp, vertical = 4.dp)
+                    ) {
+                        Image(
+                            painter = painterResource(R.drawable.ic_resend),
+                            contentDescription = null,
+                            Modifier
+                                .padding(end = 6.dp)
+                                .size(14.dp)
                         )
-                        .clickable(timeLeft == 0, onClick = {
-                            timeLeft = 119
-                            resetTrigger++
-                            onEventDispatcher(VerifyContract.Intent.OnSendOtp(phoneNumber))
-                        })
-                        .padding(horizontal = 6.dp, vertical = 4.dp)
-                ) {
-                    Image(
-                        painter = painterResource(R.drawable.ic_resend),
-                        contentDescription = null,
-                        Modifier
-                            .padding(end = 6.dp)
-                            .size(14.dp)
-                    )
-                    Text(
-                        stringResource(R.string.resend),
-                        color = if (timeLeft > 0) lightWhite else white,
-                        fontSize = 15.sp
-                    )
+                        Text(
+                            stringResource(R.string.resend),
+                            color = if (timeLeft > 0) lightWhite else white,
+                            fontSize = 15.sp
+                        )
+                    }
                 }
 
                 Text(
@@ -260,7 +273,11 @@ private fun VerifyScreenContent(
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(10.dp))
                 .clickable(isEnabled, onClick = {
-                    onEventDispatcher(VerifyContract.Intent.OnVerifyOtp(phoneNumber, code))
+                    if (!homeToScreen) {
+                        onEventDispatcher(VerifyContract.Intent.OnConfirmOtp(code))
+                    } else {
+                        onEventDispatcher(VerifyContract.Intent.OnVerifyOtp(phoneNumber, code))
+                    }
                 })
                 .background(if (isEnabled) enabled else disabled)
                 .padding(11.dp)

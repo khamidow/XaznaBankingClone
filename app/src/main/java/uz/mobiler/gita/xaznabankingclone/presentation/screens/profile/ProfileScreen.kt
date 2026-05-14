@@ -1,6 +1,7 @@
 package uz.mobiler.gita.xaznabankingclone.presentation.screens.profile
 
 import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -34,29 +35,58 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import coil.compose.AsyncImage
+import org.orbitmvi.orbit.compose.collectAsState
+import org.orbitmvi.orbit.compose.collectSideEffect
+import uz.mobiler.gita.presenter.viewModels.profileScreen.ProfileContract
+import uz.mobiler.gita.presenter.viewModels.profileScreen.ProfileScreenViewModel
 import uz.mobiler.gita.xaznabankingclone.R
-import uz.mobiler.gita.xaznabankingclone.appSettings.AppThemeOption
 import uz.mobiler.gita.xaznabankingclone.presentation.items.BottomItem
 import uz.mobiler.gita.xaznabankingclone.presentation.items.SettingsItem
+import uz.mobiler.gita.xaznabankingclone.presentation.screens.language.LanguageScreen
+import uz.mobiler.gita.xaznabankingclone.presentation.screens.noConnectionScreen.NoConnectionScreen
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.profileDetail.ProfileDetailScreen
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.settings.SettingsScreen
-import uz.mobiler.gita.xaznabankingclone.ui.theme.XaznaBankingCloneTheme
 
 class ProfileScreen : Screen {
     @Composable
     override fun Content() {
-        ProfileContent()
+        val viewModel: ProfileContract.ViewModel = hiltViewModel<ProfileScreenViewModel>()
+        val uiState = viewModel.collectAsState()
+        val context = LocalContext.current
+        val navigator = LocalNavigator.current
+        viewModel.collectSideEffect {
+            when (it) {
+                is ProfileContract.SideEffect.ShowMessage -> {
+                    Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
+                }
+
+                is ProfileContract.SideEffect.NoConnection -> {
+                    navigator?.push(NoConnectionScreen())
+                }
+
+                is ProfileContract.SideEffect.NavigateLanguage -> {
+                    navigator?.replaceAll(LanguageScreen())
+                }
+            }
+        }
+        ProfileContent(
+            uiState.value,
+            viewModel::onEventDispatcher
+        )
     }
 }
 
 @Composable
-private fun ProfileContent() {
+private fun ProfileContent(
+    uiState: ProfileContract.UiState,
+    onEventDispatcher: (ProfileContract.Intent) -> Unit
+) {
     val context = LocalContext.current
     val navigator = LocalNavigator.current
     val pref = context.getSharedPreferences("register", Context.MODE_PRIVATE)
@@ -285,6 +315,8 @@ private fun ProfileContent() {
                 stringResource(R.string.detection_of_malicious_applications)
             ) {}
             SettingsItem(R.drawable.ic_logout_red, stringResource(R.string.logout)) {
+                onEventDispatcher(ProfileContract.Intent.OnLogOut)
+                pref.edit().putString("pin_code", "").apply()
             }
 
             Spacer(modifier = Modifier.weight(1f))
@@ -295,10 +327,10 @@ private fun ProfileContent() {
     }
 }
 
-@Preview
-@Composable
-private fun ProfileContentPreview() {
-    XaznaBankingCloneTheme(AppThemeOption.DARK) {
-        ProfileContent()
-    }
-}
+//@Preview
+//@Composable
+//private fun ProfileContentPreview() {
+//    XaznaBankingCloneTheme(AppThemeOption.DARK) {
+//        ProfileContent()
+//    }
+//}

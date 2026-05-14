@@ -65,9 +65,11 @@ import uz.mobiler.gita.presenter.viewModels.firstPinScreen.FirstPinViewModel
 import uz.mobiler.gita.xaznabankingclone.MainActivity
 import uz.mobiler.gita.xaznabankingclone.R
 import uz.mobiler.gita.xaznabankingclone.presentation.items.NumberButton
+import uz.mobiler.gita.xaznabankingclone.presentation.screens.home.HomeScreen
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.language.LanguageScreen
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.main.MainScreen
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.noConnectionScreen.NoConnectionScreen
+import uz.mobiler.gita.xaznabankingclone.presentation.screens.verify.VerifyScreen
 import uz.mobiler.gita.xaznabankingclone.ui.theme.darkGradient
 import uz.mobiler.gita.xaznabankingclone.ui.theme.disabled
 import uz.mobiler.gita.xaznabankingclone.ui.theme.enabled
@@ -77,7 +79,7 @@ import uz.mobiler.gita.xaznabankingclone.ui.theme.redColor
 import uz.mobiler.gita.xaznabankingclone.ui.theme.white
 import kotlin.math.roundToInt
 
-class FirstPinScreen : Screen {
+class FirstPinScreen(private val verifyToScreen: Boolean = false) : Screen {
     @Composable
     override fun Content() {
         val viewModel: FirstPinContract.ViewModel = hiltViewModel<FirstPinViewModel>()
@@ -97,9 +99,15 @@ class FirstPinScreen : Screen {
                 is FirstPinContract.SideEffect.NoConnection -> {
                     navigator?.push(NoConnectionScreen())
                 }
+
+                is FirstPinContract.SideEffect.NavigateVerifyOtp -> {
+                    navigator?.replaceAll(MainScreen())
+//                    navigator?.replace(VerifyScreen(homeToScreen = true))
+                }
             }
         }
         FirstPinContent(
+            verifyToScreen,
             uiState.value,
             viewModel::onEventDispatcher
         )
@@ -108,6 +116,7 @@ class FirstPinScreen : Screen {
 
 @Composable
 private fun FirstPinContent(
+    verifyToScreen: Boolean = false,
     uiState: FirstPinContract.UiState,
     onEventDispatcher: (FirstPinContract.Intent) -> Unit
 ) {
@@ -131,12 +140,16 @@ private fun FirstPinContent(
     var asked by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) {
         if (canUseBiometric) {
-            if (!asked && pref.getBoolean("face_id",true)) {
+            if (!asked && pref.getBoolean("face_id", true)) {
                 asked = true
                 activity.showBiometric()
             }
             activity.onBiometricSuccess = {
-                navigator?.replaceAll(MainScreen())
+                if (verifyToScreen) {
+                    onEventDispatcher(FirstPinContract.Intent.OnConfirmPin(actualPin.toString()))
+                } else {
+                    navigator?.replaceAll(MainScreen())
+                }
             }
         }
     }
@@ -206,7 +219,11 @@ private fun FirstPinContent(
                     pin = ""
                 } else {
                     Log.d("TTT", "correct")
-                    navigator?.replaceAll(MainScreen())
+                    if (verifyToScreen) {
+                        onEventDispatcher(FirstPinContract.Intent.OnConfirmPin(actualPin))
+                    } else {
+                        navigator?.replaceAll(MainScreen())
+                    }
                 }
             }
         }

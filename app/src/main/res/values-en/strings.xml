@@ -137,4 +137,27 @@
     <string name="delete_card">Delete card</string>
     <string name="select_action">Select an action</string>
 
+    <string name="transfer_to_card">Transfer to card</string>
+    <string name="between_my_cards">Between my cards</string>
+    <string name="transfer_to_wallet">Transfer to wallet</string>
+    <string name="transfer_by_requisites">Transfer by requisites</string>
+    <string name="conversion">Conversion</string>
+    <string name="international_transfers">International transfers</string>
+    <string name="request_for_funds">Request for funds</string>
+    <string name="money_transfer_to_kyrgyzstan">Transfer to Kyrgyzstan</string>
+    <string name="do_not_work">This feature does not work for some reason</string>
+
+    <string name="sender">Sender</string>
+    <string name="receiver">Receiver</string>
+    <string name="transfer_amount">Transfer amount</string>
+    <string name="zero_sum">0 UZS</string>
+    <string name="transfer_to_kgz_description">Transfers to ELCARD cards are currently available only through UZCARD cards.</string>
+    <string name="payment_to_budget">Payment to budget (for 25/27-digit accounts)</string>
+    <string name="recipient_bank_code">Recipient bank code (MFO)</string>
+    <string name="recipient_account">Recipient account (20 digits)</string>
+    <string name="recipient_name">Recipient name</string>
+    <string name="payment_name">Payment name</string>
+    <string name="attention">Attention! To ensure your payment is accepted, please specify who or what you are paying for</string>
+    <string name="search">Search</string>
+
 </resources>

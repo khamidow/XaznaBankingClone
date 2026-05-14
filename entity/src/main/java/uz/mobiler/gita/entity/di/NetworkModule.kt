@@ -19,6 +19,9 @@ import uz.mobiler.gita.entity.source.local.TokenManager
 import uz.mobiler.gita.entity.source.remote.api.AuthApi
 import uz.mobiler.gita.entity.source.remote.api.CardsApi
 import uz.mobiler.gita.entity.source.remote.api.ExchangeApi
+import uz.mobiler.gita.entity.source.remote.api.LoansApi
+import uz.mobiler.gita.entity.source.remote.api.PaymentsApi
+import uz.mobiler.gita.entity.source.remote.api.TransfersApi
 import uz.mobiler.gita.entity.source.remote.api.UsersApi
 import javax.inject.Singleton
 
@@ -83,4 +86,19 @@ class NetworkModule {
     @Singleton
     fun provideUsersApi(retrofit: Retrofit): UsersApi =
         retrofit.create(UsersApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideTransfersApi(retrofit: Retrofit): TransfersApi =
+        retrofit.create(TransfersApi::class.java)
+
+    @Provides
+    @Singleton
+    fun providePaymentsApi(retrofit: Retrofit): PaymentsApi =
+        retrofit.create(PaymentsApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideLoansApi(retrofit: Retrofit): LoansApi =
+        retrofit.create(LoansApi::class.java)
 }

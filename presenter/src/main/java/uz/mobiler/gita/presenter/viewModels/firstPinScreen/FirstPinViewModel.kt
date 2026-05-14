@@ -11,12 +11,14 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
 import org.orbitmvi.orbit.viewmodel.container
 import uz.mobiler.gita.presenter.util.NetworkMonitor
+import uz.mobiler.gita.usecase.ConfirmPinUseCase
 import uz.mobiler.gita.usecase.LogoutUseCase
 import javax.inject.Inject
 
 @HiltViewModel
 class FirstPinViewModel @Inject constructor(
     private val logoutUseCase: LogoutUseCase,
+    private val confirmPinUseCase: ConfirmPinUseCase,
     private val networkMonitor: NetworkMonitor
 ) : FirstPinContract.ViewModel, ViewModel() {
 
@@ -35,6 +37,21 @@ class FirstPinViewModel @Inject constructor(
                         it.onSuccess {
                             postSideEffect(FirstPinContract.SideEffect.NavigateLanguage)
                             reduce { state.copy(message = it) }
+                        }.onFailure {
+                            postSideEffect(FirstPinContract.SideEffect.ShowMessage(it.message.toString()))
+                        }
+                    }.launchIn(viewModelScope)
+                } else {
+                    postSideEffect(FirstPinContract.SideEffect.NoConnection)
+                }
+            }
+            is FirstPinContract.Intent.OnConfirmPin -> {
+                if (networkMonitor.checkConnection()) {
+                    confirmPinUseCase(intent.pin).onStart {
+                        reduce { state.copy(loading = true) }
+                    }.onCompletion { reduce { state.copy(loading = false) } }.onEach {
+                        it.onSuccess {
+                            postSideEffect(FirstPinContract.SideEffect.NavigateVerifyOtp)
                         }.onFailure {
                             postSideEffect(FirstPinContract.SideEffect.ShowMessage(it.message.toString()))
                         }
