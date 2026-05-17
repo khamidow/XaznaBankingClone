@@ -1,7 +1,9 @@
 package uz.mobiler.gita.presenter.viewModels.profileDetailScreen
 
+import cafe.adriel.voyager.core.screen.Screen
 import kotlinx.coroutines.Job
 import org.orbitmvi.orbit.ContainerHost
+import uz.mobiler.gita.presenter.viewModels.homeScreen.HomeContract
 
 interface ProfileDetailContract {
 
@@ -10,6 +12,7 @@ interface ProfileDetailContract {
     }
 
     data class UiState(
+        val showKycButton:Boolean=false,
         val loading: Boolean = false,
         val message: String = ""
     )
@@ -21,6 +24,7 @@ interface ProfileDetailContract {
     }
 
     sealed interface Intent {
+        data object OnLoad: Intent
         data class OnUpdateName(val name: String) : Intent
     }
 }

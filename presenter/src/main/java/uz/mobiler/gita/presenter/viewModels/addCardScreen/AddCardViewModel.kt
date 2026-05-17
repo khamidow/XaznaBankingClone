@@ -12,12 +12,14 @@ import kotlinx.coroutines.flow.onStart
 import org.orbitmvi.orbit.viewmodel.container
 import uz.mobiler.gita.presenter.util.NetworkMonitor
 import uz.mobiler.gita.usecase.AttachCardUseCase
+import uz.mobiler.gita.usecase.KycStatusUseCase
 import uz.mobiler.gita.usecase.SetMainCardUseCase
 import javax.inject.Inject
 
 @HiltViewModel
 class AddCardViewModel @Inject constructor(
     private val addCardUseCase: AttachCardUseCase,
+    private val kycStatusUseCase: KycStatusUseCase,
     private val networkMonitor: NetworkMonitor
 ) : AddCardContract.ViewModel, ViewModel() {
 
@@ -30,7 +32,7 @@ class AddCardViewModel @Inject constructor(
         when (intent) {
             is AddCardContract.Intent.OnAddCard -> {
                 if (networkMonitor.checkConnection()) {
-                    addCardUseCase(intent.cardNumber,intent.bcg).onStart {
+                    addCardUseCase(intent.cardNumber, intent.bcg).onStart {
                         reduce { state.copy(loading = true) }
                     }.onCompletion { reduce { state.copy(loading = false) } }.onEach {
                         it.onSuccess {
@@ -41,7 +43,7 @@ class AddCardViewModel @Inject constructor(
                         }
                     }.launchIn(viewModelScope)
                 } else {
-                   postSideEffect(AddCardContract.SideEffect.NoConnection)
+                    postSideEffect(AddCardContract.SideEffect.NoConnection)
                 }
             }
         }

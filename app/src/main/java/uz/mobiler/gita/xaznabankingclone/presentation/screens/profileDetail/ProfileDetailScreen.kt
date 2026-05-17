@@ -12,7 +12,9 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -40,6 +42,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -51,11 +54,17 @@ import coil.decode.GifDecoder
 import coil.request.ImageRequest
 import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
+import uz.mobiler.gita.presenter.viewModels.homeScreen.HomeContract
 import uz.mobiler.gita.presenter.viewModels.profileDetailScreen.ProfileDetailContract
 import uz.mobiler.gita.presenter.viewModels.profileDetailScreen.ProfileDetailViewModel
 import uz.mobiler.gita.xaznabankingclone.R
+import uz.mobiler.gita.xaznabankingclone.presentation.screens.identification.IdentificationScreen
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.noConnectionScreen.NoConnectionScreen
+import uz.mobiler.gita.xaznabankingclone.ui.theme.darkGreen
+import uz.mobiler.gita.xaznabankingclone.ui.theme.enabled
+import uz.mobiler.gita.xaznabankingclone.ui.theme.lightWhite
 import uz.mobiler.gita.xaznabankingclone.ui.theme.loadingTransparentBcg
+import uz.mobiler.gita.xaznabankingclone.ui.theme.white
 
 class ProfileDetailScreen : Screen {
     @Composable
@@ -291,6 +300,74 @@ private fun ProfileDetailContent(
                         .padding(top = 4.dp)
                         .width(200.dp)
                 )
+            }
+
+            if (uiState.showKycButton) {
+                val splitString = stringResource(R.string.pass_identification).split(" ")
+
+                Spacer(Modifier.weight(1f))
+
+                Box(
+                    modifier = Modifier
+                        .padding(horizontal = 18.dp, vertical = 18.dp)
+                        .fillMaxWidth()
+                        .height(118.dp)
+                        .clickable {
+                            navigator?.push(IdentificationScreen())
+                        }
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .padding(top = 34.dp)
+                            .fillMaxSize()
+                            .clip(RoundedCornerShape(12.dp))
+                            .background(darkGreen)
+                            .padding(16.dp)
+                    ) {
+                        Column(
+                            modifier = Modifier
+                                .align(Alignment.Center)
+                                .width(270.dp)
+                                .fillMaxHeight()
+                        ) {
+                            Spacer(Modifier.weight(1f))
+                            Text(
+                                splitString[0],
+                                color = enabled,
+                                fontSize = 18.sp,
+                                fontWeight = FontWeight.W600,
+                                textAlign = TextAlign.Center,
+                                modifier = Modifier.fillMaxWidth()
+                            )
+                            Text(
+                                splitString[1],
+                                color = white,
+                                fontSize = 18.sp,
+                                fontWeight = FontWeight.W600,
+                                textAlign = TextAlign.Center,
+                                modifier = Modifier.fillMaxWidth()
+                            )
+                            Spacer(Modifier.weight(1f))
+                        }
+                        Image(
+                            painter = painterResource(R.drawable.ic_next),
+                            contentDescription = null,
+                            colorFilter = ColorFilter.tint(lightWhite),
+                            modifier = Modifier
+                                .align(Alignment.CenterEnd)
+                                .size(26.dp)
+                        )
+                    }
+                    Image(
+                        painter = painterResource(R.drawable.ic_shield_realistic),
+                        contentDescription = null,
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .align(Alignment.CenterStart)
+                            .padding(16.dp)
+                            .width(88.dp)
+                    )
+                }
             }
         }
     }

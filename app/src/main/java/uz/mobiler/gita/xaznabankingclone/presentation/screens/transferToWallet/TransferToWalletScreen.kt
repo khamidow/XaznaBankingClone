@@ -186,7 +186,7 @@ private fun TransferToWalletContent(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
-                    painter = painterResource("UZCARD".toIconCard()),
+                    painter = painterResource(uiState.fromCard!!.type.toIconCard()),
                     contentDescription = null,
                     modifier = Modifier.width(32.dp)
                 )
@@ -369,7 +369,7 @@ private fun TransferToWalletContent(
             }
         }
         Text(
-            stringResource(R.string.next).uppercase(),
+            stringResource(R.string.apply),
             color = if (cardNumber.length == 10 && amount.length >= 3) white else MaterialTheme.colorScheme.onPrimaryFixed,
             fontSize = 18.sp,
             fontWeight = FontWeight.W600,
@@ -420,7 +420,7 @@ private fun TransferToWalletContent(
                             )
                         }
                         Text(
-                            "UZCARD",
+                            stringResource(R.string.cards),
                             color = MaterialTheme.colorScheme.onPrimary,
                             fontWeight = FontWeight.W700,
                             fontSize = 18.sp,

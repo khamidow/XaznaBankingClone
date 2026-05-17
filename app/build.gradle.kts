@@ -69,7 +69,7 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
 // Permission
-    implementation(libs.permissions)
+    implementation("com.google.accompanist:accompanist-permissions:0.34.0")
 
 // CameraX
     implementation(libs.androidx.camera.core)
@@ -115,4 +115,11 @@ dependencies {
     implementation(libs.androidx.appcompat.resources)
 
     debugImplementation(libs.leakcanary.android)
+
+    //paging
+    implementation(libs.androidx.paging.runtime)
+    implementation(libs.androidx.paging.compose)
+
+    implementation("com.google.mlkit:face-detection:16.1.6")
+
 }

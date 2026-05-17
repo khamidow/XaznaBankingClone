@@ -25,6 +25,8 @@ okhttp = "5.3.2"
 orbitCompose = "11.0.0"
 orbitCore = "11.0.0"
 orbitViewmodel = "11.0.0"
+pagingRuntime = "3.5.0"
+pagingCompose = "3.5.0"
 permissions = "4.0.0"
 retrofit = "3.0.0"
 retrofit2KotlinCoroutinesAdapter = "0.9.2"
@@ -56,6 +58,8 @@ androidx-compose-material-icons-extended = { module = "androidx.compose.material
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleRuntimeKtx" }
+androidx-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "pagingCompose" }
+androidx-paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "pagingRuntime" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomRuntime" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomRuntime" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }

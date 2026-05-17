@@ -7,11 +7,17 @@ import dagger.hilt.components.SingletonComponent
 import uz.mobiler.gita.entity.repository.AuthRepository
 import uz.mobiler.gita.entity.repository.CardsRepository
 import uz.mobiler.gita.entity.repository.ExchangeRepository
+import uz.mobiler.gita.entity.repository.KycRepository
+import uz.mobiler.gita.entity.repository.LoansRepository
+import uz.mobiler.gita.entity.repository.PaymentsRepository
 import uz.mobiler.gita.entity.repository.TransfersRepository
 import uz.mobiler.gita.entity.repository.UsersRepository
 import uz.mobiler.gita.entity.repository.impl.AuthRepositoryImpl
 import uz.mobiler.gita.entity.repository.impl.CardsRepositoryImpl
 import uz.mobiler.gita.entity.repository.impl.ExchangeRepositoryImpl
+import uz.mobiler.gita.entity.repository.impl.KycRepositoryImpl
+import uz.mobiler.gita.entity.repository.impl.LoansRepositoryImpl
+import uz.mobiler.gita.entity.repository.impl.PaymentsRepositoryImpl
 import uz.mobiler.gita.entity.repository.impl.TransfersRepositoryImpl
 import uz.mobiler.gita.entity.repository.impl.UsersRepositoryImpl
 import javax.inject.Singleton
@@ -33,4 +39,13 @@ interface RepositoryModule {
 
     @[Binds Singleton]
     fun bindTransfersRepository(impl: TransfersRepositoryImpl): TransfersRepository
+
+    @[Binds Singleton]
+    fun bindPaymentsRepository(impl: PaymentsRepositoryImpl): PaymentsRepository
+
+    @[Binds Singleton]
+    fun bindLoansRepository(impl: LoansRepositoryImpl): LoansRepository
+
+    @[Binds Singleton]
+    fun bindKycRepository(impl: KycRepositoryImpl): KycRepository
 }

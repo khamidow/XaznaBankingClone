@@ -161,4 +161,53 @@
     <string name="attention">Внимание! Чтобы ваш платёж был принят, пожалуйста, укажите, кому или за что вы платите</string>
     <string name="search">Поиск</string>
 
+    <string name="income">Доход</string>
+    <string name="output">Расход</string>
+    <string name="cards">Карты</string>
+    <string name="payment_amount">Сумма платежа</string>
+
+    <string name="active">Активный</string>
+    <string name="inactive">Неактивный</string>
+    <string name="loan_amount">Сумма кредита</string>
+    <string name="apply_loan">Получить кредит</string>
+    <string name="months">Месяцы</string>
+    <string name="apply">Подтвердить</string>
+
+    <string name="repayment">Платёж</string>
+    <string name="total_amount">Общая сумма</string>
+    <string name="remaining">Осталось</string>
+    <string name="monthly_payment">Ежемесячный платёж</string>
+    <string name="next_due_date">Следующая дата платежа</string>
+    <string name="status">Статус</string>
+
+    <string name="last_update">Последнее обновление:</string>
+    <string name="mb_rate">Курс ЦБ</string>
+    <string name="buy">Покупка</string>
+    <string name="sell">Продажа</string>
+
+    <string name="login_or_register">Войти или зарегистрироваться</string>
+    <string name="passport_series">Серия и номер паспорта</string>
+    <string name="i_am_resident">Я резидент</string>
+    <string name="continue_kyc">ПРОДОЛЖИТЬ</string>
+
+    <string name="identificate_to_continue">Подтвердите личность для продолжения</string>
+    <string name="identification_dialog_description">Подтвердите личность, чтобы использовать все функции приложения</string>
+    <string name="pass_identification">Пройти идентификацию</string>
+
+    <string name="need_camera_permission">Требуется доступ к камере</string>
+    <string name="need_camera_permission_to_identificate">Для подтверждения личности необходим доступ к камере.</string>
+    <string name="allow">Разрешить</string>
+    <string name="taking_permission">Запрос разрешения</string>
+    <string name="make_face_inside">Убедитесь, что ваше лицо находится внутри отмеченной области</string>
+
+    <string name="social_services">Социальные услуги</string>
+    <string name="my_bank">Мой банк</string>
+    <string name="my_home">Мой дом</string>
+    <string name="my_car">Мой автомобиль</string>
+    <string name="government_services">Государственные услуги</string>
+    <string name="my_pension">Моя пенсия</string>
+    <string name="tax_debts">Налоговые задолженности</string>
+    <string name="my_applications">Мои заявки</string>
+    <string name="service_quality_assesment">Оценка качества обслуживания</string>
+
 </resources>

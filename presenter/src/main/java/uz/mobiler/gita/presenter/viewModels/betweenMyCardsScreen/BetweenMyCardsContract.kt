@@ -12,8 +12,8 @@ interface BetweenMyCardsContract {
 
     data class UiState(
         val cards: List<CardData> = emptyList(),
-        val fromCard: CardData? = null,
-        val toCard: CardData? = null,
+        val fromCard: CardData? = CardData("","","","",0L,"",false,false,"UZCARD"),
+        val toCard: CardData? = CardData("","","","",0L,"",false,false,"UZCARD"),
         val loading: Boolean = false,
         val message: String = ""
     )

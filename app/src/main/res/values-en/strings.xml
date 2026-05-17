@@ -160,4 +160,53 @@
     <string name="attention">Attention! To ensure your payment is accepted, please specify who or what you are paying for</string>
     <string name="search">Search</string>
 
+    <string name="income">Income</string>
+    <string name="output">Expense</string>
+    <string name="cards">Cards</string>
+    <string name="payment_amount">Payment amount</string>
+
+    <string name="active">Active</string>
+    <string name="inactive">Inactive</string>
+    <string name="loan_amount">Loan amount</string>
+    <string name="apply_loan">Apply for loan</string>
+    <string name="months">Months</string>
+    <string name="apply">Confirm</string>
+
+    <string name="repayment">Repayment</string>
+    <string name="total_amount">Total amount</string>
+    <string name="remaining">Remaining</string>
+    <string name="monthly_payment">Monthly payment</string>
+    <string name="next_due_date">Next due date</string>
+    <string name="status">Status</string>
+
+    <string name="last_update">Last update:</string>
+    <string name="mb_rate">Central Bank rate</string>
+    <string name="buy">Buy</string>
+    <string name="sell">Sell</string>
+
+    <string name="login_or_register">Login or register</string>
+    <string name="passport_series">Passport series and number</string>
+    <string name="i_am_resident">I am a resident</string>
+    <string name="continue_kyc">CONTINUE</string>
+
+    <string name="identificate_to_continue">Verify your identity to continue</string>
+    <string name="identification_dialog_description">Verify your identity to use all app features</string>
+    <string name="pass_identification">Pass identification</string>
+
+    <string name="need_camera_permission">Camera permission required</string>
+    <string name="need_camera_permission_to_identificate">Camera access is required to verify your face.</string>
+    <string name="allow">Allow</string>
+    <string name="taking_permission">Requesting permission</string>
+    <string name="make_face_inside">Make sure your face is inside the marked area</string>
+
+    <string name="social_services">Social services</string>
+    <string name="my_bank">My bank</string>
+    <string name="my_home">My home</string>
+    <string name="my_car">My car</string>
+    <string name="government_services">Government services</string>
+    <string name="my_pension">My pension</string>
+    <string name="tax_debts">Tax debts</string>
+    <string name="my_applications">My applications</string>
+    <string name="service_quality_assesment">Service quality assessment</string>
+
 </resources>

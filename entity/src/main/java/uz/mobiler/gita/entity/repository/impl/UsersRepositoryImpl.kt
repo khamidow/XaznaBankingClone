@@ -2,13 +2,20 @@ package uz.mobiler.gita.entity.repository.impl
 
 import android.content.SharedPreferences
 import androidx.core.content.edit
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import com.google.gson.Gson
+import kotlinx.coroutines.flow.Flow
+import uz.mobiler.gita.core.models.TransactionData
 import uz.mobiler.gita.core.models.UserData
+import uz.mobiler.gita.entity.pagingSource.TransactionPagingSource
 import uz.mobiler.gita.entity.repository.UsersRepository
 import uz.mobiler.gita.entity.source.local.TokenManager
 import uz.mobiler.gita.entity.source.remote.api.UsersApi
 import uz.mobiler.gita.entity.source.remote.request.ProfileNameRequest
 import uz.mobiler.gita.entity.source.remote.response.OtpGeneralErrorResponse
+import uz.mobiler.gita.entity.source.remote.response.TransactionResponse
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -71,6 +78,25 @@ class UsersRepositoryImpl @Inject constructor(
                 Result.failure(Throwable(errorMessage.error.message))
             }
         }
+    }
+
+    override fun getTransactions(
+        cardId: String,
+        type: String
+    ): Flow<PagingData<TransactionData>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 20,
+                prefetchDistance = 5
+            ),
+            pagingSourceFactory = {
+                TransactionPagingSource(
+                    api = usersApi,
+                    cardId = cardId,
+                    type = type
+                )
+            }
+        ).flow
     }
 
 }
