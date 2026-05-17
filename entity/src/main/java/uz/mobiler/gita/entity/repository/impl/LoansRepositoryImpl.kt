@@ -2,22 +2,12 @@ package uz.mobiler.gita.entity.repository.impl
 
 import android.content.SharedPreferences
 import com.google.gson.Gson
-import uz.mobiler.gita.core.models.CardData
 import uz.mobiler.gita.core.models.LoanData
-import uz.mobiler.gita.core.models.PaymentData
 import uz.mobiler.gita.entity.repository.LoansRepository
-import uz.mobiler.gita.entity.repository.PaymentsRepository
-import uz.mobiler.gita.entity.repository.TransfersRepository
 import uz.mobiler.gita.entity.source.local.TokenManager
 import uz.mobiler.gita.entity.source.remote.api.LoansApi
-import uz.mobiler.gita.entity.source.remote.api.PaymentsApi
-import uz.mobiler.gita.entity.source.remote.api.TransfersApi
 import uz.mobiler.gita.entity.source.remote.request.LoanRepayRequest
 import uz.mobiler.gita.entity.source.remote.request.LoanRequest
-import uz.mobiler.gita.entity.source.remote.request.MakePaymentRequest
-import uz.mobiler.gita.entity.source.remote.request.TransferConfirmOtpRequest
-import uz.mobiler.gita.entity.source.remote.request.TransferConfirmPinRequest
-import uz.mobiler.gita.entity.source.remote.request.TransferRequest
 import uz.mobiler.gita.entity.source.remote.response.OtpGeneralErrorResponse
 import javax.inject.Inject
 

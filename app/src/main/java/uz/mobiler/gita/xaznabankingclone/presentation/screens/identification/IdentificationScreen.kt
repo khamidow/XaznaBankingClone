@@ -46,6 +46,7 @@ import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import uz.mobiler.gita.xaznabankingclone.R
+import uz.mobiler.gita.xaznabankingclone.presentation.screens.identificationCamera.FaceCameraScreen
 import uz.mobiler.gita.xaznabankingclone.ui.theme.black
 import uz.mobiler.gita.xaznabankingclone.ui.theme.darkGreen
 import uz.mobiler.gita.xaznabankingclone.ui.theme.light
@@ -261,7 +262,7 @@ private fun IdentificationContent() {
                 .clip(RoundedCornerShape(14.dp))
                 .background(if (isPassportValid && isBirthDateValid) darkGreen else light)
                 .clickable(enabled = isPassportValid && isBirthDateValid) {
-                    navigator?.push(FaceCameraScreen(passportSeries,birthDate.text))
+                    navigator?.push(FaceCameraScreen(passportSeries, birthDate.text))
                 },
             contentAlignment = Alignment.Center
         ) {

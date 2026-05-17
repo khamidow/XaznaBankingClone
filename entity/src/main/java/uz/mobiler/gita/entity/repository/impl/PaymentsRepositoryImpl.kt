@@ -11,7 +11,6 @@ import uz.mobiler.gita.entity.source.remote.response.OtpGeneralErrorResponse
 import javax.inject.Inject
 
 class PaymentsRepositoryImpl @Inject constructor(
-    private val tokenManager: TokenManager,
     private val paymentsApi: PaymentsApi,
     private val gson: Gson,
     private val pref: SharedPreferences

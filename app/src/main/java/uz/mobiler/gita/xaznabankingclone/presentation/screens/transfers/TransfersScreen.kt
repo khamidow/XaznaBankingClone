@@ -30,7 +30,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
@@ -43,7 +42,6 @@ import org.orbitmvi.orbit.compose.collectSideEffect
 import uz.mobiler.gita.presenter.viewModels.transfers.TransfersContract
 import uz.mobiler.gita.presenter.viewModels.transfers.TransfersViewModel
 import uz.mobiler.gita.xaznabankingclone.R
-import uz.mobiler.gita.xaznabankingclone.appSettings.AppThemeOption
 import uz.mobiler.gita.xaznabankingclone.presentation.items.KycDialog
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.askForMoney.AskForMoneyScreen
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.betweenMyCards.BetweenMyCardsScreen
@@ -54,7 +52,6 @@ import uz.mobiler.gita.xaznabankingclone.presentation.screens.transferToCard.Tra
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.transferToKyrgyzstan.TransferToKyrgyzstanScreen
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.transferToWallet.TransferToWalletScreen
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.universalPayment.UniversalPaymentScreen
-import uz.mobiler.gita.xaznabankingclone.ui.theme.XaznaBankingCloneTheme
 
 class TransfersScreen : Screen {
     @OptIn(ExperimentalMaterial3Api::class)

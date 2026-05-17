@@ -26,10 +26,6 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -39,7 +35,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -54,12 +49,9 @@ import org.orbitmvi.orbit.compose.collectSideEffect
 import uz.mobiler.gita.presenter.viewModels.loans.LoansContract
 import uz.mobiler.gita.presenter.viewModels.loans.LoansViewModel
 import uz.mobiler.gita.xaznabankingclone.R
-import uz.mobiler.gita.xaznabankingclone.appSettings.AppThemeOption
-import uz.mobiler.gita.xaznabankingclone.presentation.screens.addCard.AddCardScreen
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.addLoan.AddLoanScreen
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.noConnectionScreen.NoConnectionScreen
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.repayLoanScreen.RepayLoanScreen
-import uz.mobiler.gita.xaznabankingclone.ui.theme.XaznaBankingCloneTheme
 import uz.mobiler.gita.xaznabankingclone.ui.theme.lightGradient
 import uz.mobiler.gita.xaznabankingclone.ui.theme.loadingTransparentBcg
 import uz.mobiler.gita.xaznabankingclone.ui.theme.mainColor

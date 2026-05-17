@@ -3,10 +3,7 @@ package uz.mobiler.gita.presenter.viewModels.paymentsScreen
 import cafe.adriel.voyager.core.screen.Screen
 import kotlinx.coroutines.Job
 import org.orbitmvi.orbit.ContainerHost
-import uz.mobiler.gita.core.models.CardData
-import uz.mobiler.gita.core.models.ExchangeData
 import uz.mobiler.gita.core.models.PaymentData
-import uz.mobiler.gita.presenter.viewModels.transfers.TransfersContract
 
 interface PaymentsContract {
 

@@ -11,13 +11,8 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
 import org.orbitmvi.orbit.viewmodel.container
 import uz.mobiler.gita.presenter.util.NetworkMonitor
-import uz.mobiler.gita.presenter.viewModels.transferToCardScreen.TransferToCardContract
 import uz.mobiler.gita.usecase.ApplyForLoanUseCase
-import uz.mobiler.gita.usecase.CheckCardUseCase
-import uz.mobiler.gita.usecase.ConfirmOtpUseCase
-import uz.mobiler.gita.usecase.ConfirmPinUseCase
 import uz.mobiler.gita.usecase.GetCardsUseCase
-import uz.mobiler.gita.usecase.InitiateTransferUseCase
 import javax.inject.Inject
 
 @HiltViewModel

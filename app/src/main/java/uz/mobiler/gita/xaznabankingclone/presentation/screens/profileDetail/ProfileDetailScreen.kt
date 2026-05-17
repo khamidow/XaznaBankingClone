@@ -12,7 +12,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -54,7 +53,6 @@ import coil.decode.GifDecoder
 import coil.request.ImageRequest
 import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
-import uz.mobiler.gita.presenter.viewModels.homeScreen.HomeContract
 import uz.mobiler.gita.presenter.viewModels.profileDetailScreen.ProfileDetailContract
 import uz.mobiler.gita.presenter.viewModels.profileDetailScreen.ProfileDetailViewModel
 import uz.mobiler.gita.xaznabankingclone.R

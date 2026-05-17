@@ -11,7 +11,6 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
 import org.orbitmvi.orbit.viewmodel.container
 import uz.mobiler.gita.presenter.util.NetworkMonitor
-import uz.mobiler.gita.presenter.viewModels.homeScreen.HomeContract
 import uz.mobiler.gita.usecase.GetUserInfoUseCase
 import uz.mobiler.gita.usecase.KycStatusUseCase
 import uz.mobiler.gita.usecase.UpdateUserNameUseCase
@@ -19,7 +18,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProfileDetailViewModel @Inject constructor(
-    private val getUserInfoUseCase: GetUserInfoUseCase,
     private val updateUserNameUseCase: UpdateUserNameUseCase,
     private val getKycStatusUseCase: KycStatusUseCase,
     private val networkMonitor: NetworkMonitor

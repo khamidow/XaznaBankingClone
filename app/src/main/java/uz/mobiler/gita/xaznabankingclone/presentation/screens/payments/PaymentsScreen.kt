@@ -1,7 +1,5 @@
 package uz.mobiler.gita.xaznabankingclone.presentation.screens.payments
 
-import android.graphics.ColorFilter
-import android.widget.Space
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -16,7 +14,6 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
@@ -46,7 +43,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import cafe.adriel.voyager.core.screen.Screen
@@ -60,7 +56,6 @@ import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
 import uz.mobiler.gita.presenter.viewModels.paymentsScreen.PaymentsContract
 import uz.mobiler.gita.presenter.viewModels.paymentsScreen.PaymentsViewModel
-import uz.mobiler.gita.presenter.viewModels.transfers.TransfersContract
 import uz.mobiler.gita.xaznabankingclone.R
 import uz.mobiler.gita.xaznabankingclone.presentation.items.KycDialog
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.identification.IdentificationScreen

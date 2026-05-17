@@ -11,17 +11,14 @@ import uz.mobiler.gita.core.models.TransactionData
 import uz.mobiler.gita.core.models.UserData
 import uz.mobiler.gita.entity.pagingSource.TransactionPagingSource
 import uz.mobiler.gita.entity.repository.UsersRepository
-import uz.mobiler.gita.entity.source.local.TokenManager
 import uz.mobiler.gita.entity.source.remote.api.UsersApi
 import uz.mobiler.gita.entity.source.remote.request.ProfileNameRequest
 import uz.mobiler.gita.entity.source.remote.response.OtpGeneralErrorResponse
-import uz.mobiler.gita.entity.source.remote.response.TransactionResponse
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class UsersRepositoryImpl @Inject constructor(
-    private val tokenManager: TokenManager,
     private val usersApi: UsersApi,
     private val gson: Gson,
     private val sharedPref: SharedPreferences

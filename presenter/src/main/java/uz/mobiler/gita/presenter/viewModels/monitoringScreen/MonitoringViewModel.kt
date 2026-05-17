@@ -5,9 +5,7 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
-import androidx.paging.filter
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.map
 import org.orbitmvi.orbit.viewmodel.container
 import uz.mobiler.gita.core.toUiModel

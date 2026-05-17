@@ -44,7 +44,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
@@ -57,14 +56,11 @@ import coil.decode.GifDecoder
 import coil.request.ImageRequest
 import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
-import uz.mobiler.gita.presenter.viewModels.transferToCardScreen.TransferToCardContract
 import uz.mobiler.gita.presenter.viewModels.transferToKyrgyzstan.TransferToKyrgyzstanContract
 import uz.mobiler.gita.presenter.viewModels.transferToKyrgyzstan.TransferToKyrgyzstanViewModel
 import uz.mobiler.gita.xaznabankingclone.R
-import uz.mobiler.gita.xaznabankingclone.appSettings.AppThemeOption
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.firstPin.FirstPinScreen
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.noConnectionScreen.NoConnectionScreen
-import uz.mobiler.gita.xaznabankingclone.ui.theme.XaznaBankingCloneTheme
 import uz.mobiler.gita.xaznabankingclone.ui.theme.loadingTransparentBcg
 import uz.mobiler.gita.xaznabankingclone.ui.theme.white
 import uz.mobiler.gita.xaznabankingclone.utils.CardNumberVisualTransformation

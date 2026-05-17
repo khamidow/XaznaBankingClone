@@ -1,9 +1,7 @@
 package uz.mobiler.gita.presenter.viewModels.profileDetailScreen
 
-import cafe.adriel.voyager.core.screen.Screen
 import kotlinx.coroutines.Job
 import org.orbitmvi.orbit.ContainerHost
-import uz.mobiler.gita.presenter.viewModels.homeScreen.HomeContract
 
 interface ProfileDetailContract {
 

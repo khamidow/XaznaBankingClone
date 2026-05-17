@@ -44,7 +44,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -58,7 +57,6 @@ import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
 import uz.mobiler.gita.presenter.viewModels.addLoanScreen.AddLoanContract
 import uz.mobiler.gita.presenter.viewModels.addLoanScreen.AddLoanContractViewModel
-import uz.mobiler.gita.presenter.viewModels.transferToCardScreen.TransferToCardContract
 import uz.mobiler.gita.xaznabankingclone.R
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.firstPin.FirstPinScreen
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.noConnectionScreen.NoConnectionScreen
@@ -108,11 +106,9 @@ private fun AddLoanContent(
 ) {
     val context = LocalContext.current
     val navigator = LocalNavigator.current
-    var cardNumber by remember { mutableStateOf("") }
     val cardSheetState = rememberModalBottomSheetState(true)
     var showCardSheet by remember { mutableStateOf(false) }
     var amount by remember { mutableStateOf("") }
-    val infoSheetState = rememberModalBottomSheetState(true)
     var months by remember { mutableStateOf("") }
 
     Box(

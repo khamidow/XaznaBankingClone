@@ -62,7 +62,6 @@ import uz.mobiler.gita.xaznabankingclone.presentation.screens.firstPin.FirstPinS
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.noConnectionScreen.NoConnectionScreen
 import uz.mobiler.gita.xaznabankingclone.ui.theme.loadingTransparentBcg
 import uz.mobiler.gita.xaznabankingclone.ui.theme.white
-import uz.mobiler.gita.xaznabankingclone.utils.CardNumberVisualTransformation
 import uz.mobiler.gita.xaznabankingclone.utils.WalletNumberVisualTransformation
 import uz.mobiler.gita.xaznabankingclone.utils.formatUzs
 import uz.mobiler.gita.xaznabankingclone.utils.toIconCard
@@ -112,7 +111,6 @@ private fun TransferToWalletContent(
     val cardSheetState = rememberModalBottomSheetState(true)
     var showCardSheet by remember { mutableStateOf(false) }
     var amount by remember { mutableStateOf("") }
-    val infoSheetState = rememberModalBottomSheetState(true)
     val doNotWorkString = stringResource(R.string.do_not_work)
 
     Box(

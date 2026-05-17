@@ -7,9 +7,7 @@ import androidx.paging.insertSeparators
 import androidx.paging.map
 import uz.mobiler.gita.core.models.TransactionData
 import uz.mobiler.gita.core.models.TransactionUiItem
-import java.time.Instant
 import java.time.LocalDateTime
-import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 
 @RequiresApi(Build.VERSION_CODES.O)

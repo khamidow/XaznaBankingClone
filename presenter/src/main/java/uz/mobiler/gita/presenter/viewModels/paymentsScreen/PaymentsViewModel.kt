@@ -12,7 +12,6 @@ import kotlinx.coroutines.flow.onStart
 import org.orbitmvi.orbit.viewmodel.container
 import uz.mobiler.gita.core.models.PaymentData
 import uz.mobiler.gita.presenter.util.NetworkMonitor
-import uz.mobiler.gita.presenter.viewModels.transfers.TransfersContract
 import uz.mobiler.gita.usecase.GetPaymentProvidersUseCase
 import uz.mobiler.gita.usecase.KycStatusUseCase
 import uz.mobiler.gita.usecase.MakePaymentUseCase

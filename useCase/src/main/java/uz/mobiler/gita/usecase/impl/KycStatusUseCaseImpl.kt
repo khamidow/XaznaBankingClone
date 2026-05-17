@@ -5,10 +5,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import uz.mobiler.gita.core.models.LoanData
 import uz.mobiler.gita.entity.repository.KycRepository
-import uz.mobiler.gita.entity.repository.LoansRepository
-import uz.mobiler.gita.usecase.ApplyForLoanUseCase
 import uz.mobiler.gita.usecase.KycStatusUseCase
 import javax.inject.Inject
 

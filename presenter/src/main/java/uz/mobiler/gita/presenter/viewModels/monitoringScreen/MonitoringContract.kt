@@ -4,7 +4,6 @@ import androidx.paging.PagingData
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
 import org.orbitmvi.orbit.ContainerHost
-import uz.mobiler.gita.core.models.TransactionData
 import uz.mobiler.gita.core.models.TransactionUiItem
 
 interface MonitoringContract {

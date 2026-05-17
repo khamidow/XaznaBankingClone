@@ -59,7 +59,6 @@ import uz.mobiler.gita.presenter.viewModels.monitoringScreen.MonitoringContract
 import uz.mobiler.gita.presenter.viewModels.monitoringScreen.MonitoringViewModel
 import uz.mobiler.gita.xaznabankingclone.R
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.noConnectionScreen.NoConnectionScreen
-import uz.mobiler.gita.xaznabankingclone.ui.theme.disabled
 import uz.mobiler.gita.xaznabankingclone.ui.theme.enabled
 import uz.mobiler.gita.xaznabankingclone.ui.theme.loadingTransparentBcg
 import uz.mobiler.gita.xaznabankingclone.ui.theme.redColor
