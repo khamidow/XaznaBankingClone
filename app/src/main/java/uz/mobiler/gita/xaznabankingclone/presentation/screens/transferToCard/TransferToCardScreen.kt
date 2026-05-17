@@ -184,7 +184,7 @@ private fun TransferToCardContent(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
-                    painter = painterResource("UZCARD".toIconCard()),
+                    painter = painterResource(uiState.fromCard!!.type.toIconCard()),
                     contentDescription = null,
                     modifier = Modifier.width(32.dp)
                 )
@@ -410,7 +410,7 @@ private fun TransferToCardContent(
                             )
                         }
                         Text(
-                            "UZCARD",
+                            stringResource(R.string.cards),
                             color = MaterialTheme.colorScheme.onPrimary,
                             fontWeight = FontWeight.W700,
                             fontSize = 18.sp,
@@ -541,7 +541,7 @@ private fun TransferToCardContent(
                         )
                         Spacer(Modifier.height(32.dp))
                         Text(
-                            stringResource(R.string.next).uppercase(),
+                            stringResource(R.string.apply),
                             color = white,
                             fontSize = 18.sp,
                             fontWeight = FontWeight.W600,

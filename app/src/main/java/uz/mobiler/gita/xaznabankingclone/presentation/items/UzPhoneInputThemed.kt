@@ -16,13 +16,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import uz.mobiler.gita.xaznabankingclone.utils.formatUzPhone
 
 @Composable
 fun UzPhoneInputThemed(onPhoneChanged: (String, Boolean) -> Unit) {
@@ -89,22 +89,4 @@ fun UzPhoneInputThemed(onPhoneChanged: (String, Boolean) -> Unit) {
             }
         )
     }
-}
-
-
-private fun formatUzPhone(input: String): String {
-    val digits = input.take(9)
-
-    val builder = StringBuilder("+998 ")
-
-    digits.forEachIndexed { index, c ->
-        builder.append(c)
-        when (index) {
-            1 -> builder.append(" ")
-            4 -> builder.append(" ")
-            6 -> builder.append(" ")
-        }
-    }
-
-    return builder.toString()
 }

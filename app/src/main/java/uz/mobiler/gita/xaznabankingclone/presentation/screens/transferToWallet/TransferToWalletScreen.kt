@@ -62,7 +62,6 @@ import uz.mobiler.gita.xaznabankingclone.presentation.screens.firstPin.FirstPinS
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.noConnectionScreen.NoConnectionScreen
 import uz.mobiler.gita.xaznabankingclone.ui.theme.loadingTransparentBcg
 import uz.mobiler.gita.xaznabankingclone.ui.theme.white
-import uz.mobiler.gita.xaznabankingclone.utils.CardNumberVisualTransformation
 import uz.mobiler.gita.xaznabankingclone.utils.WalletNumberVisualTransformation
 import uz.mobiler.gita.xaznabankingclone.utils.formatUzs
 import uz.mobiler.gita.xaznabankingclone.utils.toIconCard
@@ -112,7 +111,6 @@ private fun TransferToWalletContent(
     val cardSheetState = rememberModalBottomSheetState(true)
     var showCardSheet by remember { mutableStateOf(false) }
     var amount by remember { mutableStateOf("") }
-    val infoSheetState = rememberModalBottomSheetState(true)
     val doNotWorkString = stringResource(R.string.do_not_work)
 
     Box(
@@ -186,7 +184,7 @@ private fun TransferToWalletContent(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
-                    painter = painterResource("UZCARD".toIconCard()),
+                    painter = painterResource(uiState.fromCard!!.type.toIconCard()),
                     contentDescription = null,
                     modifier = Modifier.width(32.dp)
                 )
@@ -369,7 +367,7 @@ private fun TransferToWalletContent(
             }
         }
         Text(
-            stringResource(R.string.next).uppercase(),
+            stringResource(R.string.apply),
             color = if (cardNumber.length == 10 && amount.length >= 3) white else MaterialTheme.colorScheme.onPrimaryFixed,
             fontSize = 18.sp,
             fontWeight = FontWeight.W600,
@@ -420,7 +418,7 @@ private fun TransferToWalletContent(
                             )
                         }
                         Text(
-                            "UZCARD",
+                            stringResource(R.string.cards),
                             color = MaterialTheme.colorScheme.onPrimary,
                             fontWeight = FontWeight.W700,
                             fontSize = 18.sp,

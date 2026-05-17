@@ -12,7 +12,7 @@ interface TransferToCardContract {
 
     data class UiState(
         val cards: List<CardData> = emptyList(),
-        val fromCard: CardData? = null,
+        val fromCard: CardData? = CardData("","","","",0L,"",false,false,"UZCARD"),
         val foundName: String = "",
         val nameDialogState: Boolean = false,
         val loading: Boolean = false,

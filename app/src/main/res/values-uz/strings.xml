@@ -160,4 +160,53 @@
     <string name="attention">Diqqat! To\'lovingiz qabul qilinishiga ishonch hosil qilish uchun, iltimos, kim yoki nima uchun to\'layotganingizni ko\'rsating</string>
     <string name="search">Qidirish</string>
 
+    <string name="income">Kirim</string>
+    <string name="output">Chiqim</string>
+    <string name="cards">Cards</string>
+    <string name="payment_amount">To\'lov miqdori</string>
+
+    <string name="active">Faol</string>
+    <string name="inactive">Faol emas</string>
+    <string name="loan_amount">Kredit miqdori</string>
+    <string name="apply_loan">Kredit olish</string>
+    <string name="months">Oylar</string>
+    <string name="apply">Tasdiqlash</string>
+
+    <string name="repayment">To\'lov</string>
+    <string name="total_amount">Umumiy hisob</string>
+    <string name="remaining">Qolgan</string>
+    <string name="monthly_payment">Oylik to\'lov</string>
+    <string name="next_due_date">Keyingi muddat</string>
+    <string name="status">Holati</string>
+
+    <string name="last_update">Oxirgi yangilanish:</string>
+    <string name="mb_rate">MB kursi</string>
+    <string name="buy">Sotib olish</string>
+    <string name="sell">Sotish</string>
+
+    <string name="login_or_register">Kirish yoki ro\'yxatdan o\'tish</string>
+    <string name="passport_series">Passport seriyasi va raqami</string>
+    <string name="i_am_resident">Men rezidentman</string>
+    <string name="continue_kyc">DAVOM ETISH</string>
+
+    <string name="identificate_to_continue">Davom etish uchun shaxsingizni tasdiqlang</string>
+    <string name="identification_dialog_description">Ilovaning barcha funksiyalaridan foydalanish uchun shaxsingizni tasdiqlang</string>
+    <string name="pass_identification">Identifikatsiyadan o\'tish</string>
+
+    <string name="need_camera_permission">Kamera ruxsati kerak</string>
+    <string name="need_camera_permission_to_identificate">Yuzingizni tasdiqlash uchun kameraga kirish ruxsati zarur.</string>
+    <string name="allow">Ruxsat berish</string>
+    <string name="taking_permission">Ruxsat so\'ralmoqda</string>
+    <string name="make_face_inside">Sizning yuzingiz belgilangan maydon ichida bo\'lishini ta\'minlang</string>
+
+    <string name="social_services">Ijtimoiy xizmatlar</string>
+    <string name="my_bank">Mening bankim</string>
+    <string name="my_home">Mening uyim</string>
+    <string name="my_car">Mening avtomobilim</string>
+    <string name="government_services">Davlat xizmatlari</string>
+    <string name="my_pension">Mening pensiyam</string>
+    <string name="tax_debts">Soliq qarzdorliklar</string>
+    <string name="my_applications">Mening arizalarim</string>
+    <string name="service_quality_assesment">Xizmat sifatini baholash</string>
+
 </resources>

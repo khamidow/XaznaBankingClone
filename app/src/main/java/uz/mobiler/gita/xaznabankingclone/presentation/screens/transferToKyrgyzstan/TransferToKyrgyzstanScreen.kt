@@ -44,7 +44,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
@@ -57,14 +56,11 @@ import coil.decode.GifDecoder
 import coil.request.ImageRequest
 import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
-import uz.mobiler.gita.presenter.viewModels.transferToCardScreen.TransferToCardContract
 import uz.mobiler.gita.presenter.viewModels.transferToKyrgyzstan.TransferToKyrgyzstanContract
 import uz.mobiler.gita.presenter.viewModels.transferToKyrgyzstan.TransferToKyrgyzstanViewModel
 import uz.mobiler.gita.xaznabankingclone.R
-import uz.mobiler.gita.xaznabankingclone.appSettings.AppThemeOption
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.firstPin.FirstPinScreen
 import uz.mobiler.gita.xaznabankingclone.presentation.screens.noConnectionScreen.NoConnectionScreen
-import uz.mobiler.gita.xaznabankingclone.ui.theme.XaznaBankingCloneTheme
 import uz.mobiler.gita.xaznabankingclone.ui.theme.loadingTransparentBcg
 import uz.mobiler.gita.xaznabankingclone.ui.theme.white
 import uz.mobiler.gita.xaznabankingclone.utils.CardNumberVisualTransformation
@@ -190,7 +186,7 @@ private fun TransferToKyrgyzstanContent(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
-                    painter = painterResource("UZCARD".toIconCard()),
+                    painter = painterResource(uiState.fromCard!!.type.toIconCard()),
                     contentDescription = null,
                     modifier = Modifier.width(32.dp)
                 )
@@ -376,7 +372,7 @@ private fun TransferToKyrgyzstanContent(
                     .fillMaxWidth()
             )
             Text(
-                stringResource(R.string.next).uppercase(),
+                stringResource(R.string.apply),
                 color = if (cardNumber.length == 16 && amount.length >= 3) white else MaterialTheme.colorScheme.onPrimaryFixed,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.W600,
@@ -427,7 +423,7 @@ private fun TransferToKyrgyzstanContent(
                             )
                         }
                         Text(
-                            "UZCARD",
+                            stringResource(R.string.cards),
                             color = MaterialTheme.colorScheme.onPrimary,
                             fontWeight = FontWeight.W700,
                             fontSize = 18.sp,

@@ -13,12 +13,14 @@ import org.orbitmvi.orbit.viewmodel.container
 import uz.mobiler.gita.presenter.util.NetworkMonitor
 import uz.mobiler.gita.usecase.GetCardsUseCase
 import uz.mobiler.gita.usecase.GetExchangeUseCase
+import uz.mobiler.gita.usecase.KycStatusUseCase
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getExchangeUseCase: GetExchangeUseCase,
     private val getCardsUseCase: GetCardsUseCase,
+    private val getKycStatusUseCase: KycStatusUseCase,
     private val networkMonitor: NetworkMonitor
 ) : HomeContract.ViewModel, ViewModel() {
 
@@ -35,6 +37,7 @@ class HomeViewModel @Inject constructor(
         when (intent) {
             is HomeContract.Intent.OnLoadData -> {
                 if (networkMonitor.checkConnection()) {
+
                     getCardsUseCase().onStart {
                         reduce { state.copy(loading = true) }
                     }.onCompletion { reduce { state.copy(loading = false) } }.onEach {
@@ -58,9 +61,26 @@ class HomeViewModel @Inject constructor(
                             postSideEffect(HomeContract.SideEffect.ShowMessage(it.message.toString()))
                         }
                     }.launchIn(viewModelScope)
+
                 } else {
-                   postSideEffect(HomeContract.SideEffect.NoConnection)
+                    postSideEffect(HomeContract.SideEffect.NoConnection)
                 }
+            }
+
+            is HomeContract.Intent.OnCheckKcy -> {
+                getKycStatusUseCase().onStart {
+                    reduce { state.copy(loading = true) }
+                }.onCompletion { reduce { state.copy(loading = false) } }.onEach {
+                    it.onSuccess {
+                        if (!it) {
+                            postSideEffect(HomeContract.SideEffect.KycDialog)
+                        }else{
+                            postSideEffect(HomeContract.SideEffect.Navigate(intent.screen))
+                        }
+                    }.onFailure {
+                        postSideEffect(HomeContract.SideEffect.ShowMessage(it.message.toString()))
+                    }
+                }.launchIn(viewModelScope)
             }
         }
     }

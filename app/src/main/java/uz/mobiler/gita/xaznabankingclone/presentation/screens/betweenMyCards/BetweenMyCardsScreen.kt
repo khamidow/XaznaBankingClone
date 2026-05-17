@@ -180,7 +180,7 @@ private fun BetweenMyCardsContent(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
-                    painter = painterResource("UZCARD".toIconCard()),
+                    painter = painterResource(uiState.fromCard!!.type.toIconCard()),
                     contentDescription = null,
                     modifier = Modifier.width(32.dp)
                 )
@@ -276,7 +276,7 @@ private fun BetweenMyCardsContent(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
-                    painter = painterResource("UZCARD".toIconCard()),
+                    painter = painterResource(uiState.toCard!!.type.toIconCard()),
                     contentDescription = null,
                     modifier = Modifier.width(32.dp)
                 )
@@ -435,7 +435,7 @@ private fun BetweenMyCardsContent(
                             )
                         }
                         Text(
-                            "UZCARD",
+                            stringResource(R.string.cards),
                             color = MaterialTheme.colorScheme.onPrimary,
                             fontWeight = FontWeight.W700,
                             fontSize = 18.sp,
