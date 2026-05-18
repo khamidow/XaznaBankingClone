@@ -3,6 +3,7 @@ package uz.mobiler.gita.xaznabankingclone.utils
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Build
+import android.util.Base64
 import androidx.annotation.RequiresApi
 import uz.mobiler.gita.xaznabankingclone.R
 import java.io.ByteArrayOutputStream
@@ -154,23 +155,11 @@ fun formatBirthDate(input: String): String {
 fun imageToBase64(filePath: String): String {
     val bitmap = BitmapFactory.decodeFile(filePath)
 
-    val resized = Bitmap.createScaledBitmap(
-        bitmap,
-        480,
-        640,
-        true
-    )
+    val outputStream = ByteArrayOutputStream()
+    bitmap.compress(Bitmap.CompressFormat.JPEG, 30, outputStream)
 
-    val stream = ByteArrayOutputStream()
-
-    resized.compress(Bitmap.CompressFormat.JPEG, 40, stream)
-
-    val bytes = stream.toByteArray()
-
-    return android.util.Base64.encodeToString(
-        bytes,
-        android.util.Base64.NO_WRAP
-    )
+    val byteArray = outputStream.toByteArray()
+    return Base64.encodeToString(byteArray, Base64.DEFAULT)
 }
 
 fun String.toApiDateFormat(): String {
