@@ -40,7 +40,7 @@ class KycRepositoryImpl @Inject constructor(
         birthDate: String,
         selfieBase64: String
     ): Result<Boolean> {
-        val request = KycRequest(passportSeries, passportNumber, birthDate, selfieBase64)
+        val request = KycRequest(passportSeries, passportNumber, birthDate, selfieBase64.take(15))
         Log.d("KYC_BODY", Gson().toJson(request))
         val response = kycApi.submitKycDocuments(request)
 

@@ -16,10 +16,7 @@ interface KYCApi {
     suspend fun getKycStatus(): Response<CardGeneralResponse<KycStatusResponse>>
 
     @POST("/api/v1/kyc")
-    @Headers(
-        "Requires-Auth: true",
-        "Content-Type: application/json"
-    )
+    @Headers("Requires-Auth: true")
     suspend fun submitKycDocuments(@Body kycRequest: KycRequest): Response<CardGeneralResponse<JustMessageResponse>>
 
 }
